@@ -6,7 +6,7 @@ import {
 import useFetch from "../../../api/hooks/useFetch";
 import { useForm } from "react-hook-form";
 import { redirect } from "../../../utils/redirect";
-import { Label, TextField } from "../UI";
+import { Label, SelectField, TextField } from "../UI";
 
 export interface UpdateVehiculeFormProps {
     id: string;
@@ -61,17 +61,12 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
                         />
                     </div>
                     <div>
-                        <Label label="Etat :" name="etat" />
-                        <select
-                            {...register("etat", { required: true })}
+                        <SelectField
+                            array={optionEtat}
+                            {...register("etat")}
+                            label="Etat :"
                             defaultValue={vehicule.etat}
-                        >
-                            {optionEtat.map((option, key) => (
-                                <option key={key} value={option.value}>
-                                    {option.label}
-                                </option>
-                            ))}
-                        </select>
+                        />
                     </div>
                     <div>
                         <Label label="Loué :" name="louer" />

@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 import { NewVehiculePayload } from "../../../services/vehiculeService";
-import { TextField } from "../UI";
+import { SelectField, TextField } from "../UI";
 
 interface NewVehiculeFormProps {
     onSubmit: (value: NewVehiculePayload) => void;
@@ -33,20 +33,11 @@ const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <label>Type:</label>
-                <select
-                    {...register("type", { required: true })}
-                    defaultValue={optionsType[0].value}
-                >
-                    {optionsType.map((option, key) => (
-                        <option key={key} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
-                {errors.type && (
-                    <span className="text-red-600">*Champ obligatoire</span>
-                )}
+                <SelectField
+                    array={optionsType}
+                    {...register("type")}
+                    label="Type :"
+                />
             </div>
             <div>
                 <TextField
@@ -70,20 +61,11 @@ const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
                 />
             </div>
             <div>
-                <label>Etat:</label>
-                <select
-                    {...register("etat", { required: true })}
-                    defaultValue={optionEtat[0].value}
-                >
-                    {optionEtat.map((option, key) => (
-                        <option key={key} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
-                {errors.etat && (
-                    <span className="text-red-600">*Champ obligatoire</span>
-                )}
+                <SelectField
+                    array={optionEtat}
+                    {...register("etat")}
+                    label="Etat :"
+                />
             </div>
             <div>
                 <label>Loué:</label>
