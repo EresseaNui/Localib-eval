@@ -31,8 +31,6 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
             etat: formValues.etat,
             louer: formValues.louer,
         };
-        console.log(payload);
-
         await vehiculeService.updateVehicule(id as string, payload);
         reFetch();
         redirect("/vehicules");
