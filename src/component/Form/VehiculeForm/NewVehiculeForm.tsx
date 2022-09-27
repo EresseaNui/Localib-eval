@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { NewVehiculePayload } from "../../../../services/vehiculeService";
+import { NewVehiculePayload } from "../../../services/vehiculeService";
 
 interface NewVehiculeFormProps {
     onSubmit: (value: NewVehiculePayload) => void;

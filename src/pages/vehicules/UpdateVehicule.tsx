@@ -7,7 +7,7 @@ import {
     vehiculeService,
 } from "../../services/vehiculeService";
 import { useParams } from "react-router-dom";
-import UpdateVehiculeForm from "../../component/Form/UI/VehiculeForm/UpdateVehiculeForm";
+import UpdateVehiculeForm from "../../component/Form/VehiculeForm/UpdateVehiculeForm";
 
 export interface UpdateVehiculeProps {
     className?: string;

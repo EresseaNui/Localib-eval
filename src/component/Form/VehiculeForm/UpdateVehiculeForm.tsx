@@ -2,10 +2,10 @@ import React from "react";
 import {
     UpdateVehiculePayload,
     vehiculeService,
-} from "../../../../services/vehiculeService";
-import useFetch from "../../../../api/hooks/useFetch";
+} from "../../../services/vehiculeService";
+import useFetch from "../../../api/hooks/useFetch";
 import { useForm } from "react-hook-form";
-import { redirect } from "../../../../utils/redirect";
+import { redirect } from "../../../utils/redirect";
 
 export interface UpdateVehiculeFormProps {
     id: string;

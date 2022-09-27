@@ -1,11 +1,11 @@
 import React from "react";
+import NewVehiculeForm from "../../component/Form/VehiculeForm/NewVehiculeForm";
 import Layout from "../../component/UI/Layout/Layout";
 import {
     NewVehiculePayload,
     vehiculeService,
 } from "../../services/vehiculeService";
 import { redirect } from "../../utils/redirect";
-import NewVehiculeForm from "../../component/Form/UI/VehiculeForm/NewVehiculeForm";
 
 const NewVehiculePage: React.FC<unknown> = () => {
     const onSubmitNewVehicule = async (
