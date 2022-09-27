@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 import { api } from "../utils/dryConfig";
 import { VehiculeEtat, VehiculeType } from "../utils/enum/vehiculeEnum";
 
-export interface RegisterPayload {
+export interface NewVehiculePayload {
     type: VehiculeType;
     marque: string;
     modele: string;
@@ -11,12 +11,33 @@ export interface RegisterPayload {
     louer: boolean;
 }
 
+export interface UpdateVehiculePayload {
+    immatriculation: string;
+    etat: VehiculeEtat;
+    louer: boolean;
+}
+
 class VehiculeService {
     createNewVehicule = (
-        payload: RegisterPayload
+        payload: NewVehiculePayload
     ): Promise<void | AxiosResponse<any, any>> => {
         return api
             .post(`/vehicules`, payload)
+            .catch((err) => console.error(err));
+    };
+
+    updateVehicule = (
+        id: string,
+        payload: UpdateVehiculePayload
+    ): Promise<void | AxiosResponse<any, any>> => {
+        return api
+            .patch(`/vehicules/${id}`, payload)
+            .catch((err) => console.error(err));
+    };
+
+    delete = (id: string): Promise<void | AxiosResponse<any, any>> => {
+        return api
+            .delete(`/vehicules/${id}`)
             .catch((err) => console.error(err));
     };
 }

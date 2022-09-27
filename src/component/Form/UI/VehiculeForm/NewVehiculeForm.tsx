@@ -1,20 +1,20 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { RegisterPayload } from "../../../../services/vehiculeService";
+import { NewVehiculePayload } from "../../../../services/vehiculeService";
 
-interface CreateNewVehiculeProps {
-    onSubmit: (value: RegisterPayload) => void;
+interface NewVehiculeFormProps {
+    onSubmit: (value: NewVehiculePayload) => void;
 }
 
-const CreateNewVehicule: React.FC<CreateNewVehiculeProps> = ({
+const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
     onSubmit = () => {},
 }) => {
     const {
         handleSubmit,
         register,
         formState: { errors },
-    } = useForm<RegisterPayload>();
+    } = useForm<NewVehiculePayload>();
 
     const optionsType = [
         { value: "voiture", label: "Voiture" },
@@ -113,4 +113,4 @@ const CreateNewVehicule: React.FC<CreateNewVehiculeProps> = ({
     );
 };
 
-export default CreateNewVehicule;
+export default NewVehiculeForm;

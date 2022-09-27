@@ -1,16 +1,19 @@
-import React from "react";
+import React, { Key } from "react";
 import useFetch from "../../api/hooks/useFetch";
 import Layout from "../../component/UI/Layout/Layout";
 import { AiFillCar, AiOutlineEye, AiOutlinePlusCircle } from "react-icons/ai";
 import { HiOutlineTrash } from "react-icons/hi";
 import { BiPencil } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
+import IVehicule from "../../types/vehicule.type";
+import { vehiculeService } from "../../services/vehiculeService";
 
 const VehiculeListPage: React.FC<unknown> = () => {
-    const { data: vehicules } = useFetch("/vehicules");
+    const { data: vehicules, reFetch } = useFetch("/vehicules");
 
-    const onClickDelete = (id: string): void => {
-        console.log("TODO: Connecter delete au back");
+    const onClickDelete = async (id: string): Promise<void> => {
+        await vehiculeService.delete(id);
+        reFetch();
     };
 
     return (
@@ -36,7 +39,7 @@ const VehiculeListPage: React.FC<unknown> = () => {
                     </NavLink>
                 </div>
                 <div>
-                    {vehicules.map((vehicule, key) => (
+                    {vehicules.map((vehicule: IVehicule, key: Key) => (
                         <div
                             className="p-5 border rounded-lg border-blue-primary"
                             key={key}

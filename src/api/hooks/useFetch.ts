@@ -9,7 +9,7 @@ import { api } from "../../utils/dryConfig";
  */
 const useFetch = (url: string) => {
     // state
-    const [data, setData] = useState<any[]>([]);
+    const [data, setData] = useState<any[] | any>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<unknown>(false);
 
