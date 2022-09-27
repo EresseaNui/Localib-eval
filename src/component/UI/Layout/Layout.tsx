@@ -84,7 +84,7 @@ const Layout: React.FC<LayoutProps> = ({
             >
                 {navMenu && (
                     <div className="hidden h-screen sm:flex flex-col justify-center ">
-                        <div className="border-t border-b border-r border-blue-primary shadow-md rounded-lg h-fit p-5">
+                        <div className="border-t border-b border-r w-max border-blue-primary shadow-md rounded-lg h-fit p-5">
                             <div>
                                 <img
                                     src={require("../../../images/localib-removebg-preview.png")}

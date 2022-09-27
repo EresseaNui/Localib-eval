@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import {
     HomePage,
     NewVehiculePage,
+    UpdateVehicule,
     VehiculeDetails,
     VehiculeListPage,
 } from "./pages";
@@ -15,6 +16,10 @@ const Router: React.FC<unknown> = () => {
 
                 <Route path="/vehicules" element={<VehiculeListPage />} />
                 <Route path="/vehicule/:id" element={<VehiculeDetails />} />
+                <Route
+                    path="/vehicule/:id/update"
+                    element={<UpdateVehicule />}
+                />
                 <Route path="/vehicule/new" element={<NewVehiculePage />} />
             </Routes>
         </div>
