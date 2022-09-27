@@ -2,6 +2,7 @@ import React from "react";
 
 import clsx from "clsx";
 import useFetch from "../../api/hooks/useFetch";
+import Layout from "../../component/UI/Layout/Layout";
 
 const VehiculeListPage: React.FC<unknown> = () => {
     const { data: vehicules } = useFetch("/vehicules");
@@ -9,9 +10,9 @@ const VehiculeListPage: React.FC<unknown> = () => {
     console.log(vehicules);
 
     return (
-        <div className={clsx("")}>
+        <Layout>
             <p>TODO VEHICULE LIST PAGE</p>
-        </div>
+        </Layout>
     );
 };
 

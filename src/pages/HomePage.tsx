@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Layout from "../component/UI/Layout/Layout";
 
 const HomePage: React.FC<unknown> = () => {
     const links = [
@@ -22,8 +23,8 @@ const HomePage: React.FC<unknown> = () => {
     ] as const;
 
     return (
-        <div className="sm:p-24 p-0 sm:m-auto">
-            <div className=" sm:border border-blue-primary rounded-lg max-w-full sm:max-w-xl">
+        <Layout className="sm:p-24 p-0 sm:m-auto" navMenu={false}>
+            <div className="m-auto sm:border border-blue-primary rounded-lg max-w-full sm:max-w-xl">
                 <div>
                     <img
                         src={require("../images/localib-removebg-preview.png")}
@@ -42,7 +43,7 @@ const HomePage: React.FC<unknown> = () => {
                     ))}
                 </div>
             </div>
-        </div>
+        </Layout>
     );
 };
 
