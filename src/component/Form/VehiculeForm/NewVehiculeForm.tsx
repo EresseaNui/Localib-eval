@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 import { NewVehiculePayload } from "../../../services/vehiculeService";
+import { TextField } from "../UI";
 
 interface NewVehiculeFormProps {
     onSubmit: (value: NewVehiculePayload) => void;
@@ -48,39 +49,25 @@ const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
                 )}
             </div>
             <div>
-                <label>Marque : </label>
-                <input
-                    type="text"
+                <TextField
+                    label="Marque :"
+                    className="border border-blue-primary"
                     {...register("marque", { required: true })}
-                    className="border border-black"
                 />
-                {errors.marque && (
-                    <span className="text-red-600">*Champ obligatoire</span>
-                )}
             </div>
             <div>
-                <label>Modèle : </label>
-                <input
-                    type="text"
+                <TextField
+                    label="Modèle :"
+                    className="border border-blue-primary"
                     {...register("modele", { required: true })}
-                    className="border border-black"
                 />
-                {errors.modele && (
-                    <span className="text-red-600">*Champ obligatoire</span>
-                )}
             </div>
             <div>
-                <label>immatriculation : </label>
-                <input
-                    type="text"
-                    {...register("immatriculation", {
-                        required: true,
-                    })}
-                    className="border border-black"
+                <TextField
+                    label="Immatriculation :"
+                    className="border border-blue-primary"
+                    {...register("immatriculation", { required: true })}
                 />
-                {errors.immatriculation && (
-                    <span className="text-red-600">*Champ obligatoire</span>
-                )}
             </div>
             <div>
                 <label>Etat:</label>

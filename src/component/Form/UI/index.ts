@@ -1,3 +1,4 @@
 import Label from "./Label";
+import TextField from "./TextField";
 
-export { Label };
+export { Label, TextField };
