@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
     UpdateVehiculePayload,
     vehiculeService,
@@ -15,6 +15,7 @@ export interface UpdateVehiculeFormProps {
 const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
     const { data: vehicule, reFetch } = useFetch(`/vehicules/${id}`);
     const { handleSubmit, register } = useForm<UpdateVehiculePayload>();
+    const ref = useRef(null);
 
     const optionEtat = [
         { value: "A", label: "A" },
@@ -58,6 +59,7 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
                             className="border border-blue-primary"
                             {...register("immatriculation")}
                             defaultValue={vehicule.immatriculation}
+                            ref={ref}
                         />
                     </div>
                     <div>
@@ -66,6 +68,7 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
                             {...register("etat")}
                             label="Etat :"
                             defaultValue={vehicule.etat}
+                            
                         />
                     </div>
                     <div>

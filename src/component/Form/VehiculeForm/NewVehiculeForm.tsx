@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 
 import { NewVehiculePayload } from "../../../services/vehiculeService";
@@ -11,11 +11,8 @@ interface NewVehiculeFormProps {
 const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
     onSubmit = () => {},
 }) => {
-    const {
-        handleSubmit,
-        register,
-        formState: { errors },
-    } = useForm<NewVehiculePayload>();
+    const { handleSubmit, register } = useForm<NewVehiculePayload>();
+    const ref = useRef(null);
 
     const optionsType = [
         { value: "voiture", label: "Voiture" },
@@ -44,6 +41,7 @@ const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
                     label="Marque :"
                     className="border border-blue-primary"
                     {...register("marque", { required: true })}
+                    ref={ref}
                 />
             </div>
             <div>
@@ -51,6 +49,7 @@ const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
                     label="Modèle :"
                     className="border border-blue-primary"
                     {...register("modele", { required: true })}
+                    ref={ref}
                 />
             </div>
             <div>
@@ -58,6 +57,7 @@ const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
                     label="Immatriculation :"
                     className="border border-blue-primary"
                     {...register("immatriculation", { required: true })}
+                    ref={ref}
                 />
             </div>
             <div>
