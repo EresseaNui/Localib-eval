@@ -43,18 +43,18 @@ const Layout: React.FC<LayoutProps> = ({
             {navMenu && (
                 <div>
                     <Disclosure>
-                        <Disclosure.Button className="flex text-blue-primary w-full justify-end sm:hidden border-b-2 border-blue-primary ">
-                            <HiMenu className="h-8 w-8" />
+                        <Disclosure.Button className="flex justify-end w-full border-b-2 text-blue-primary sm:hidden border-blue-primary ">
+                            <HiMenu className="w-8 h-8" />
                         </Disclosure.Button>
                         <Disclosure.Panel className="text-gray-500">
                             <div>
                                 <div>
                                     <img
                                         src={require("../../../images/localib-removebg-preview.png")}
-                                        className="m-auto w-20 h-20"
+                                        className="w-20 h-20 m-auto"
                                     />
                                 </div>
-                                <div className="flex flex-col text-center space-y-5 h-full px-5 pb-5 border-b-2 border-blue-primary">
+                                <div className="flex flex-col h-full px-5 pb-5 space-y-5 text-center border-b-2 border-blue-primary">
                                     {links.map((link, key) => (
                                         <NavLink
                                             to={link.uri}
@@ -83,15 +83,15 @@ const Layout: React.FC<LayoutProps> = ({
                 )}
             >
                 {navMenu && (
-                    <div className="hidden h-screen sm:flex flex-col justify-center ">
-                        <div className="border-t border-b border-r w-max border-blue-primary shadow-md rounded-lg h-fit p-5">
+                    <div className="flex-col justify-center hidden h-screen sm:flex ">
+                        <div className="fixed p-5 border-t border-b border-r rounded-lg shadow-md w-max border-blue-primary h-fit">
                             <div>
                                 <img
                                     src={require("../../../images/localib-removebg-preview.png")}
-                                    className="m-auto h-20 w-20"
+                                    className="w-20 h-20 m-auto"
                                 />
                             </div>
-                            <div className="flex flex-col text-center space-y-5 h-full">
+                            <div className="flex flex-col h-full space-y-5 text-center">
                                 {links.map((link, key) => (
                                     <NavLink
                                         to={link.uri}
@@ -109,7 +109,7 @@ const Layout: React.FC<LayoutProps> = ({
                         </div>
                     </div>
                 )}
-                <div className="p-10">{children}</div>
+                <div className="p-10 ml-auto sm:ml-64">{children}</div>
             </div>
         </div>
     );
