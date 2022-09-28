@@ -1,8 +1,8 @@
 export default interface ICustomer {
     id: string;
-    nom: string;
-    prenom: string;
-    telephone: string;
-    email: string;
-    date_naissance: Date;
+    firstname: string;
+    lastname: string;
+    phone: string;
+    mail: string;
+    birthdate: Date;
 }

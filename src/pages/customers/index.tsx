@@ -13,7 +13,7 @@ import { format } from "date-fns";
 import { customerService } from "../../services/customerService";
 
 const CustomerListPage: React.FC<unknown> = () => {
-    const { data: customers, reFetch } = useFetch("/clients");
+    const { data: customers, reFetch } = useFetch("/customers");
 
     const onClickDelete = async (id: string): Promise<void> => {
         await customerService.delete(id);
@@ -48,14 +48,14 @@ const CustomerListPage: React.FC<unknown> = () => {
                             className="p-5 border rounded-lg border-blue-primary"
                             key={key}
                         >
-                            <p>{customer.nom}</p>
-                            <p>{customer.prenom}</p>
-                            <p>{customer.telephone}</p>
-                            <p>{customer.email}</p>
+                            <p>{customer.lastname}</p>
+                            <p>{customer.firstname}</p>
+                            <p>{customer.phone}</p>
+                            <p>{customer.mail}</p>
                             <p>
                                 {String(
                                     format(
-                                        new Date(customer.date_naissance),
+                                        new Date(customer.birthdate),
                                         "dd/MM/yyyy"
                                     )
                                 )}

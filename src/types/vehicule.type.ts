@@ -2,10 +2,10 @@ import { VehiculeEtat, VehiculeType } from "../utils/enum/vehiculeEnum";
 
 export default interface IVehicule {
     id: string;
-    modele: string;
-    marque: string;
-    louer: boolean;
-    etat: VehiculeEtat;
+    model: string;
+    brand: string;
+    disponibility: boolean;
+    vehicle_state: VehiculeEtat;
     type: VehiculeType;
-    immatriculation: string;
+    registration_number: string;
 }

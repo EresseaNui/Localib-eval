@@ -15,10 +15,10 @@ const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
     const ref = useRef(null);
 
     const optionsType = [
-        { value: "voiture", label: "Voiture" },
-        { value: "camion", label: "Camion" },
-        { value: "moto", label: "Moto" },
-        { value: "utilitaire", label: "Utilitaire" },
+        { value: "car", label: "Voiture" },
+        { value: "truck", label: "Camion" },
+        { value: "bike", label: "Moto" },
+        { value: "utility", label: "Utilitaire" },
     ];
 
     const optionEtat = [
@@ -38,24 +38,24 @@ const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
             <TextField
                 label="Marque :"
                 className="border border-blue-primary"
-                {...register("marque", { required: true })}
+                {...register("brand", { required: true })}
             />
 
             <TextField
                 label="Modèle :"
                 className="border border-blue-primary"
-                {...register("modele", { required: true })}
+                {...register("model", { required: true })}
             />
 
             <TextField
                 label="Immatriculation :"
                 className="border border-blue-primary"
-                {...register("immatriculation", { required: true })}
+                {...register("registration_number", { required: true })}
             />
 
             <SelectField
                 array={optionEtat}
-                {...register("etat")}
+                {...register("vehicle_state")}
                 label="Etat :"
             />
 
@@ -63,7 +63,7 @@ const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
                 <label>Loué:</label>
                 <input
                     type="checkbox"
-                    {...register("louer")}
+                    {...register("disponibility")}
                     defaultChecked={false}
                 />
             </div>

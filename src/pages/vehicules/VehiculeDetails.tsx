@@ -9,7 +9,7 @@ import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 const VehiculeDetails: React.FC<unknown> = () => {
     const { id } = useParams();
 
-    const { data: vehicule } = useFetch(`/vehicules/${id}`);
+    const { data: vehicule } = useFetch(`/vehicles/${id}`);
 
     return (
         <Layout>
@@ -25,21 +25,21 @@ const VehiculeDetails: React.FC<unknown> = () => {
                 </div>
                 <div>
                     <p>
-                        Detail de {vehicule.marque}&nbsp;
-                        {vehicule.modele}
+                        Detail de {vehicule.brand}&nbsp;
+                        {vehicule.model}
                     </p>
                 </div>
                 <div>
                     <p>{vehicule.type}</p>
-                    <p>{vehicule.marque}</p>
-                    <p>{vehicule.modele}</p>
-                    <p>{vehicule.immatriculation}</p>
-                    {vehicule.louer ? (
+                    <p>{vehicule.brand}</p>
+                    <p>{vehicule.model}</p>
+                    <p>{vehicule.registration_number}</p>
+                    {vehicule.disponibility ? (
                         <p>Le véhicule est non disponible</p>
                     ) : (
                         <p>Le véhicule est disponible</p>
                     )}
-                    <p>{vehicule.etat}</p>
+                    <p>{vehicule.vehicle_state}</p>
                 </div>
             </div>
         </Layout>

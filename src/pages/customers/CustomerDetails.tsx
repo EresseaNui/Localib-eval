@@ -10,9 +10,7 @@ import { formattedDate } from "../../utils/formatDate";
 const CustomerDetails: React.FC<unknown> = () => {
     const { id } = useParams();
 
-    const { data: customer } = useFetch(`/clients/${id}`);
-
-    console.log(customer);
+    const { data: customer } = useFetch(`/customers/${id}`);
 
     return (
         <Layout>
@@ -28,20 +26,14 @@ const CustomerDetails: React.FC<unknown> = () => {
                 </div>
                 <div>
                     <p>
-                        Detail de {customer.nom}&nbsp;
-                        {customer.prenom}
+                        Detail de {customer.lastname}&nbsp;
+                        {customer.firstname}
                     </p>
                 </div>
                 <div>
-                    <p>{customer.email}</p>
-                    <p>{customer.telephone}</p>
-                    <p>
-                        {/* {format(
-                            new Date(customer.date_naissance),
-                            "dd/MM/yyyy"
-                        )} */}
-                        {formattedDate(new Date(customer.date_naissance), "/")}
-                    </p>
+                    <p>{customer.mail}</p>
+                    <p>{customer.phone}</p>
+                    <p>{formattedDate(new Date(customer.birthdate), "/")}</p>
                 </div>
             </div>
         </Layout>

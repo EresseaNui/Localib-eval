@@ -2,18 +2,20 @@ import { AxiosResponse } from "axios";
 import { api } from "../utils/dryConfig";
 
 export interface CustomerPayload {
-    nom: string;
-    prenom: string;
-    email: string;
-    telephone: string;
-    date_naissance: Date;
+    lastname: string;
+    firstname: string;
+    mail: string;
+    phone: string;
+    birthdate: Date;
 }
 
 class CustomerService {
     createNewCustomer = (
         payload: CustomerPayload
     ): Promise<void | AxiosResponse<any, any>> => {
-        return api.post(`/clients`, payload).catch((err) => console.error(err));
+        return api
+            .post(`/customers`, payload)
+            .catch((err) => console.error(err));
     };
 
     updateCustomer = (
@@ -21,12 +23,14 @@ class CustomerService {
         payload: CustomerPayload
     ): Promise<void | AxiosResponse<any, any>> => {
         return api
-            .patch(`clients/${id}`, payload)
+            .patch(`customers/${id}`, payload)
             .catch((err) => console.error(err));
     };
 
     delete = (id: string): Promise<void | AxiosResponse<any, any>> => {
-        return api.delete(`/clients/${id}`).catch((err) => console.error(err));
+        return api
+            .delete(`/customers/${id}`)
+            .catch((err) => console.error(err));
     };
 }
 export const customerService = Object.freeze(new CustomerService());

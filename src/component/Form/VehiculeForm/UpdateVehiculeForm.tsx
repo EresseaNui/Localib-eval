@@ -13,7 +13,7 @@ export interface UpdateVehiculeFormProps {
 }
 
 const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
-    const { data: vehicule, reFetch } = useFetch(`/vehicules/${id}`);
+    const { data: vehicule, reFetch } = useFetch(`/vehicles/${id}`);
     const { handleSubmit, register } = useForm<UpdateVehiculePayload>();
     const ref = useRef(null);
 
@@ -29,9 +29,9 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
     ): Promise<void> => {
         const payload = {
             ...vehicule,
-            immatriculation: formValues.immatriculation,
-            etat: formValues.etat,
-            louer: formValues.louer,
+            registration_number: formValues.registration_number,
+            vehicle_state: formValues.vehicle_state,
+            disponibility: formValues.disponibility,
         };
         await vehiculeService.updateVehicule(id as string, payload);
         reFetch();
@@ -42,14 +42,14 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
         <div>
             <div>
                 <p>
-                    Detail de {vehicule.marque}&nbsp;
-                    {vehicule.modele}
+                    Detail de {vehicule.brand}&nbsp;
+                    {vehicule.model}
                 </p>
             </div>
             <div>
                 <p>{vehicule.type}</p>
-                <p>{vehicule.marque}</p>
-                <p>{vehicule.modele}</p>
+                <p>{vehicule.brand}</p>
+                <p>{vehicule.model}</p>
             </div>
             <div>
                 <form onSubmit={handleSubmit(onSubmitUpdateVehicule)}>
@@ -57,24 +57,24 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
                         <TextField
                             label="Immatriculation :"
                             className="border border-blue-primary"
-                            {...register("immatriculation")}
-                            defaultValue={vehicule.immatriculation}
+                            {...register("registration_number")}
+                            defaultValue={vehicule.registration_number}
                         />
                     </div>
                     <div>
                         <SelectField
                             array={optionEtat}
-                            {...register("etat")}
+                            {...register("vehicle_state")}
                             label="Etat :"
-                            defaultValue={vehicule.etat}
+                            defaultValue={vehicule.vehicle_state}
                         />
                     </div>
                     <div>
                         <Label label="Loué :" name="louer" />
                         <input
                             type="checkbox"
-                            {...register("louer")}
-                            defaultChecked={vehicule.louer}
+                            {...register("disponibility")}
+                            defaultChecked={vehicule.disponibility}
                         />
                     </div>
                     <button type="submit" className="px-4 py-2 border">

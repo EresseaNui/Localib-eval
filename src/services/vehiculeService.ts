@@ -4,17 +4,17 @@ import { VehiculeEtat, VehiculeType } from "../utils/enum/vehiculeEnum";
 
 export interface NewVehiculePayload {
     type: VehiculeType;
-    marque: string;
-    modele: string;
-    immatriculation: string;
-    etat: VehiculeEtat;
-    louer: boolean;
+    brand: string;
+    model: string;
+    registration_number: string;
+    vehicle_state: VehiculeEtat;
+    disponibility: boolean;
 }
 
 export interface UpdateVehiculePayload {
-    immatriculation: string;
-    etat: VehiculeEtat;
-    louer: boolean;
+    registration_number: string;
+    vehicle_state: VehiculeEtat;
+    disponibility: boolean;
 }
 
 class VehiculeService {
@@ -22,7 +22,7 @@ class VehiculeService {
         payload: NewVehiculePayload
     ): Promise<void | AxiosResponse<any, any>> => {
         return api
-            .post(`/vehicules`, payload)
+            .post(`/vehicles`, payload)
             .catch((err) => console.error(err));
     };
 
@@ -31,14 +31,12 @@ class VehiculeService {
         payload: UpdateVehiculePayload
     ): Promise<void | AxiosResponse<any, any>> => {
         return api
-            .patch(`/vehicules/${id}`, payload)
+            .patch(`/vehicles/${id}`, payload)
             .catch((err) => console.error(err));
     };
 
     delete = (id: string): Promise<void | AxiosResponse<any, any>> => {
-        return api
-            .delete(`/vehicules/${id}`)
-            .catch((err) => console.error(err));
+        return api.delete(`/vehicles/${id}`).catch((err) => console.error(err));
     };
 }
 

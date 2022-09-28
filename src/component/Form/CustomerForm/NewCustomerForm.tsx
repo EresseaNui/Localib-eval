@@ -18,29 +18,29 @@ const NewCustomerForm: React.FC<NewCustomerFormProps> = ({
             <TextField
                 label="Nom :"
                 className="border border-blue-primary"
-                {...register("nom", { required: true })}
+                {...register("lastname", { required: true })}
             />
             <TextField
                 label="Prenom :"
                 className="border border-blue-primary"
-                {...register("prenom", { required: true })}
+                {...register("firstname", { required: true })}
             />
             <TextField
                 label="Email :"
                 className="border border-blue-primary"
-                {...register("email", { required: true })}
+                {...register("mail", { required: true })}
             />
             <TextField
                 label="Telephone :"
                 className="border border-blue-primary"
-                {...register("telephone", { required: true })}
+                {...register("phone", { required: true })}
             />
 
             <div>
                 <label>Date de naissance:</label>
                 <input
                     type="date"
-                    {...register("date_naissance", { required: true })}
+                    {...register("birthdate", { required: true })}
                 />
             </div>
 

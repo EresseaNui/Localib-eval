@@ -9,7 +9,7 @@ import IVehicule from "../../types/vehicule.type";
 import { vehiculeService } from "../../services/vehiculeService";
 
 const VehiculeListPage: React.FC<unknown> = () => {
-    const { data: vehicules, reFetch } = useFetch("/vehicules");
+    const { data: vehicules, reFetch } = useFetch("/vehicles");
 
     const onClickDelete = async (id: string): Promise<void> => {
         await vehiculeService.delete(id);
@@ -50,12 +50,12 @@ const VehiculeListPage: React.FC<unknown> = () => {
                             className="p-5 border rounded-lg border-blue-primary"
                             key={key}
                         >
-                            <p>{vehicule.marque}</p>
-                            <p>{vehicule.modele}</p>
+                            <p>{vehicule.brand}</p>
+                            <p>{vehicule.model}</p>
                             <p>{vehicule.type}</p>
-                            <p>{vehicule.immatriculation}</p>
-                            <p>{vehicule.etat}</p>
-                            {vehicule.louer ? (
+                            <p>{vehicule.registration_number}</p>
+                            <p>{vehicule.vehicle_state}</p>
+                            {vehicule.disponibility ? (
                                 <p>véhicule louer</p>
                             ) : (
                                 <p>véhicule dispo</p>
