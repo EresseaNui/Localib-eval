@@ -1,13 +1,19 @@
-import React from "react";
-import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
+import React, { useEffect } from "react";
+import { HiOutlineArrowNarrowLeft, HiOutlineTrash } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import Layout from "../../component/UI/Layout/Layout";
 import { MdOutlineCarRental } from "react-icons/md";
-import { AiOutlinePlusCircle } from "react-icons/ai";
+import { AiOutlineEye, AiOutlinePlusCircle } from "react-icons/ai";
 import useFetch from "../../api/hooks/useFetch";
+import IRenting from "../../types/renting.type";
+import { Key } from "react-hook-form/dist/types/path/common";
+import { BiPencil } from "react-icons/bi";
+import { format } from "date-fns";
 
 const RentingListPage: React.FC<unknown> = () => {
     const { data: rentings, reFetch } = useFetch("/rentings");
+
+    const rentingVehicle = "";
 
     console.log(rentings);
 
@@ -37,7 +43,58 @@ const RentingListPage: React.FC<unknown> = () => {
                     </NavLink>
                 </div>
                 <div>
-                    {/* {rentings.map((renting: ImageBitmapRenderingContextSettings, key: Key))} */}
+                    {rentings.map((renting: IRenting, key: Key) => (
+                        <div
+                            className="p-5 border rounded-lg border-blue-primary"
+                            key={key}
+                        >
+                            <p>
+                                Début :
+                                {String(
+                                    format(
+                                        new Date(renting.start_date),
+                                        "dd/MM/yyyy"
+                                    )
+                                )}
+                            </p>
+                            <p>
+                                Fin :
+                                {String(
+                                    format(
+                                        new Date(renting.end_date),
+                                        "dd/MM/yyyy"
+                                    )
+                                )}
+                            </p>
+                            <p>{renting.pricing} €</p>
+
+                            <div>
+                                <p>actions: </p>
+                                {/* <NavLink
+                                    to={`/customer/${customer.id}/update`}
+                                    className="flex items-center gap-4 px-4 py-2 text-center text-white border rounded-full bg-blue-primary hover:bg-blue-700 w-fit"
+                                >
+                                    <BiPencil />
+                                    modifier
+                                </NavLink> */}
+                                <NavLink
+                                    to={`/renting/${renting.id}`}
+                                    className="flex items-center gap-4 px-4 py-2 text-center text-white border rounded-full bg-blue-primary hover:bg-blue-700 w-fit"
+                                >
+                                    <AiOutlineEye />
+                                    Voir
+                                </NavLink>
+                                <button
+                                    type="button"
+                                    // onClick={() => onClickDelete(customer.id)}
+                                    className="flex items-center gap-4 px-4 py-2 text-center text-white bg-red-500 border rounded-full hover:bg-red-600 w-fit"
+                                >
+                                    <HiOutlineTrash />
+                                    Supprimer
+                                </button>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </Layout>
