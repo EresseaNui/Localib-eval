@@ -1,4 +1,6 @@
 import React from "react";
+import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
+import { NavLink } from "react-router-dom";
 import NewVehiculeForm from "../../component/Form/VehiculeForm/NewVehiculeForm";
 import Layout from "../../component/UI/Layout/Layout";
 import {
@@ -17,6 +19,15 @@ const NewVehiculePage: React.FC<unknown> = () => {
     return (
         <Layout>
             <div>
+                <div>
+                    <NavLink
+                        to="/vehicules"
+                        className="flex items-center space-x-1"
+                    >
+                        <HiOutlineArrowNarrowLeft className="mt-1" />
+                        <p>retour</p>
+                    </NavLink>
+                </div>
                 <div>Ajouter un nouveau véhicule</div>
                 <div>
                     <NewVehiculeForm onSubmit={onSubmitNewVehicule} />

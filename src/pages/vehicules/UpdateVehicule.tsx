@@ -6,8 +6,9 @@ import {
     UpdateVehiculePayload,
     vehiculeService,
 } from "../../services/vehiculeService";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import UpdateVehiculeForm from "../../component/Form/VehiculeForm/UpdateVehiculeForm";
+import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 
 export interface UpdateVehiculeProps {
     className?: string;
@@ -16,17 +17,22 @@ export interface UpdateVehiculeProps {
 const UpdateVehicule: React.FC<UpdateVehiculeProps> = ({ className = "" }) => {
     const { id } = useParams();
 
-   
     return (
         <Layout>
             <div>
+                <div>
+                    <NavLink
+                        to="/vehicules"
+                        className="flex items-center space-x-1"
+                    >
+                        <HiOutlineArrowNarrowLeft className="mt-1" />
+                        <p>retour</p>
+                    </NavLink>
+                </div>
                 <div>Modifier véhicule</div>
                 {id && (
                     <div>
-                        <UpdateVehiculeForm
-    
-                            id={id}
-                        />
+                        <UpdateVehiculeForm id={id} />
                     </div>
                 )}
             </div>
