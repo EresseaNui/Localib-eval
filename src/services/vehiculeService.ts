@@ -12,9 +12,9 @@ export interface NewVehiculePayload {
 }
 
 export interface UpdateVehiculePayload {
-    registration_number: string;
-    vehicle_state: VehiculeEtat;
-    disponibility: boolean;
+    registration_number?: string;
+    vehicle_state?: VehiculeEtat;
+    disponibility?: boolean;
 }
 
 class VehiculeService {

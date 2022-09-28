@@ -7,15 +7,26 @@ import { AiOutlineEye, AiOutlinePlusCircle } from "react-icons/ai";
 import useFetch from "../../api/hooks/useFetch";
 import IRenting from "../../types/renting.type";
 import { Key } from "react-hook-form/dist/types/path/common";
-import { BiPencil } from "react-icons/bi";
 import { format } from "date-fns";
+import { rentingService } from "../../services/rentingService";
+import { vehiculeService } from "../../services/vehiculeService";
 
 const RentingListPage: React.FC<unknown> = () => {
     const { data: rentings, reFetch } = useFetch("/rentings");
 
-    const rentingVehicle = "";
-
     console.log(rentings);
+
+    const onClickDelete = async (
+        id: string,
+        vehicleId: string
+    ): Promise<void> => {
+        const payload = {
+            disponibility: true,
+        };
+        await vehiculeService.updateVehicule(vehicleId, payload);
+        await rentingService.delete(id);
+        reFetch();
+    };
 
     return (
         <Layout>
@@ -68,15 +79,19 @@ const RentingListPage: React.FC<unknown> = () => {
                             </p>
                             <p>{renting.pricing} €</p>
 
+                            <p>
+                                {renting.customer.firstname}&nbsp;
+                                {renting.customer.lastname}
+                            </p>
+
+                            <p>
+                                {renting.vehicle.brand}&nbsp;
+                                {renting.vehicle.model}
+                            </p>
+
                             <div>
                                 <p>actions: </p>
-                                {/* <NavLink
-                                    to={`/customer/${customer.id}/update`}
-                                    className="flex items-center gap-4 px-4 py-2 text-center text-white border rounded-full bg-blue-primary hover:bg-blue-700 w-fit"
-                                >
-                                    <BiPencil />
-                                    modifier
-                                </NavLink> */}
+
                                 <NavLink
                                     to={`/renting/${renting.id}`}
                                     className="flex items-center gap-4 px-4 py-2 text-center text-white border rounded-full bg-blue-primary hover:bg-blue-700 w-fit"
@@ -86,7 +101,12 @@ const RentingListPage: React.FC<unknown> = () => {
                                 </NavLink>
                                 <button
                                     type="button"
-                                    // onClick={() => onClickDelete(customer.id)}
+                                    onClick={() =>
+                                        onClickDelete(
+                                            renting.id,
+                                            renting.vehicle.id
+                                        )
+                                    }
                                     className="flex items-center gap-4 px-4 py-2 text-center text-white bg-red-500 border rounded-full hover:bg-red-600 w-fit"
                                 >
                                     <HiOutlineTrash />
