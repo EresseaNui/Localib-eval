@@ -59,7 +59,6 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
                             className="border border-blue-primary"
                             {...register("immatriculation")}
                             defaultValue={vehicule.immatriculation}
-                            ref={ref}
                         />
                     </div>
                     <div>
@@ -68,7 +67,6 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
                             {...register("etat")}
                             label="Etat :"
                             defaultValue={vehicule.etat}
-                            
                         />
                     </div>
                     <div>
