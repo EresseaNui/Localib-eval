@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 
-import clsx from "clsx";
 import { CustomerPayload } from "../../../services/customerService";
 import { useForm } from "react-hook-form";
 import { TextField } from "../UI";
