@@ -31,7 +31,7 @@ const Layout: React.FC<LayoutProps> = ({
         },
         {
             name: "Gestion clients",
-            uri: "/3",
+            uri: "/customers",
         },
         {
             name: "Gestion locations",
