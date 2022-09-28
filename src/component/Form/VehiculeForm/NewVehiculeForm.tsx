@@ -29,41 +29,36 @@ const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
     ];
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <SelectField
-                    array={optionsType}
-                    {...register("type")}
-                    label="Type :"
-                />
-            </div>
-            <div>
-                <TextField
-                    label="Marque :"
-                    className="border border-blue-primary"
-                    {...register("marque", { required: true })}
-                />
-            </div>
-            <div>
-                <TextField
-                    label="Modèle :"
-                    className="border border-blue-primary"
-                    {...register("modele", { required: true })}
-                />
-            </div>
-            <div>
-                <TextField
-                    label="Immatriculation :"
-                    className="border border-blue-primary"
-                    {...register("immatriculation", { required: true })}
-                />
-            </div>
-            <div>
-                <SelectField
-                    array={optionEtat}
-                    {...register("etat")}
-                    label="Etat :"
-                />
-            </div>
+            <SelectField
+                array={optionsType}
+                {...register("type")}
+                label="Type :"
+            />
+
+            <TextField
+                label="Marque :"
+                className="border border-blue-primary"
+                {...register("marque", { required: true })}
+            />
+
+            <TextField
+                label="Modèle :"
+                className="border border-blue-primary"
+                {...register("modele", { required: true })}
+            />
+
+            <TextField
+                label="Immatriculation :"
+                className="border border-blue-primary"
+                {...register("immatriculation", { required: true })}
+            />
+
+            <SelectField
+                array={optionEtat}
+                {...register("etat")}
+                label="Etat :"
+            />
+
             <div>
                 <label>Loué:</label>
                 <input
@@ -73,7 +68,7 @@ const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
                 />
             </div>
             <button type="submit" className="px-4 py-2 border">
-                Ajouter la voiture
+                Ajouter le véhicule voiture
             </button>
         </form>
     );
