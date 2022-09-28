@@ -5,8 +5,12 @@ import Layout from "../component/UI/Layout/Layout";
 const HomePage: React.FC<unknown> = () => {
     const links = [
         {
+            name: "Acceuil",
+            uri: "/",
+        },
+        {
             name: "Location véhicules",
-            uri: "/1",
+            uri: "/renting",
         },
         {
             name: "Gestion véhicules",
@@ -14,11 +18,11 @@ const HomePage: React.FC<unknown> = () => {
         },
         {
             name: "Gestion clients",
-            uri: "/3",
+            uri: "/customers",
         },
         {
             name: "Gestion locations",
-            uri: "/4",
+            uri: "/rentings",
         },
     ] as const;
 

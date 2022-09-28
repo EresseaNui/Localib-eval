@@ -23,7 +23,7 @@ const Layout: React.FC<LayoutProps> = ({
         },
         {
             name: "Location véhicules",
-            uri: "/1",
+            uri: "/renting",
         },
         {
             name: "Gestion véhicules",
@@ -35,7 +35,7 @@ const Layout: React.FC<LayoutProps> = ({
         },
         {
             name: "Gestion locations",
-            uri: "/4",
+            uri: "/rentings",
         },
     ] as const;
     return (

@@ -5,7 +5,10 @@ import {
     CustomerListPage,
     HomePage,
     NewCustomer,
+    NewRenting,
     NewVehiculePage,
+    RentingDetails,
+    RentingListPage,
     UpdateCustomer,
     UpdateVehicule,
     VehiculeDetails,
@@ -33,6 +36,10 @@ const Router: React.FC<unknown> = () => {
                     element={<UpdateCustomer />}
                 />
                 <Route path="/customer/new" element={<NewCustomer />} />
+
+                <Route path="/rentings" element={<RentingListPage />} />
+                <Route path="/renting/:id" element={<RentingDetails />} />
+                <Route path="/renting" element={<NewRenting />} />
             </Routes>
         </div>
     );
