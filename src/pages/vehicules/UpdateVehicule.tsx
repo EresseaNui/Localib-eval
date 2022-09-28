@@ -10,11 +10,7 @@ import { NavLink, useParams } from "react-router-dom";
 import UpdateVehiculeForm from "../../component/Form/VehiculeForm/UpdateVehiculeForm";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 
-export interface UpdateVehiculeProps {
-    className?: string;
-}
-
-const UpdateVehicule: React.FC<UpdateVehiculeProps> = ({ className = "" }) => {
+const UpdateVehicule: React.FC<unknown> = () => {
     const { id } = useParams();
 
     return (
