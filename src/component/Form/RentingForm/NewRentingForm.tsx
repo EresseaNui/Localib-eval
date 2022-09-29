@@ -3,15 +3,18 @@ import {
     formatDistance,
     intervalToDuration,
 } from "date-fns";
-import React, { useEffect, useRef, useState } from "react";
+import React, { Key, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
     CreateRentingPayload,
     rentingService,
 } from "../../../services/rentingService";
 import { vehiculeService } from "../../../services/vehiculeService";
+import { getDaysBetweenDates } from "../../../utils/convertDateToPeriod";
 import { api } from "../../../utils/dryConfig";
-
+import { SelectField } from "../UI";
+import useFetch from "../../../api/hooks/useFetch";
+import IVehicule from "../../../types/vehicule.type";
 export interface NewRentingFormProps {
     onSubmit: (value: CreateRentingPayload) => void;
 }
@@ -19,6 +22,13 @@ export interface NewRentingFormProps {
 const NewRentingForm: React.FC<NewRentingFormProps> = ({
     onSubmit = () => {},
 }) => {
+    const { data: vehicles } = useFetch("/vehicles");
+
+    const optionsVehicle = vehicles.map((vehicle: IVehicule) => ({
+        value: vehicle.id,
+        label: `${vehicle.model} ${vehicle.brand}`,
+    }));
+
     const { handleSubmit, register, watch, setValue } =
         useForm<CreateRentingPayload>();
     const ref = useRef(null);
@@ -26,31 +36,16 @@ const NewRentingForm: React.FC<NewRentingFormProps> = ({
 
     const watchStartDate = watch("start_date");
     const watchEndDate = watch("end_date");
+    const watchVehicle = watch("vehicle_id");
 
-    const convertMsToDays = (ms: number) => {
-        const msInOneSecond = 1000;
-        const secondsInOneMinute = 60;
-        const minutesInOneHour = 60;
-        const hoursInOneDay = 24;
-
-        const minutesInOneDay = hoursInOneDay * minutesInOneHour;
-        const secondsInOneDay = secondsInOneMinute * minutesInOneDay;
-        const msInOneDay = msInOneSecond * secondsInOneDay;
-
-        return Math.ceil(ms / msInOneDay);
-    };
-
-    const getDaysBetweenDates = (dateOne: Date, dateTwo: Date) => {
-        let differenceInMs = dateTwo.getTime() - dateOne.getTime();
-
-        if (differenceInMs < 0) {
-            differenceInMs = dateOne.getTime() - dateTwo.getTime();
-        }
-
-        return convertMsToDays(differenceInMs);
+    const isSelectedVehicle = (vehicle: IVehicule) => {
+        return vehicle.id === watchVehicle;
     };
 
     useEffect(() => {
+        const selectedVehicle = vehicles.find(isSelectedVehicle);
+        console.log(selectedVehicle);
+
         if (watchStartDate && watchEndDate) {
             const interval = getDaysBetweenDates(
                 new Date(watchStartDate),
@@ -59,7 +54,7 @@ const NewRentingForm: React.FC<NewRentingFormProps> = ({
             setPricing(interval * 80);
             setValue("pricing", pricing);
         }
-    }, [watchStartDate, watchEndDate, setPricing, pricing]);
+    }, [watchStartDate, watchEndDate, setPricing, pricing, watchVehicle]);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -77,9 +72,15 @@ const NewRentingForm: React.FC<NewRentingFormProps> = ({
                     {...register("end_date", { required: true })}
                 />
             </div>
+            <SelectField
+                array={optionsVehicle}
+                {...register("vehicle_id")}
+                label="Vehicule :"
+                defaultValue={optionsVehicle[0]}
+            />
             {watchStartDate && watchEndDate && (
                 <div>
-                    <p>{pricing} €</p>
+                    <p>Prix : {pricing} €</p>
                 </div>
             )}
             <button type="submit" className="px-4 py-2 border">
