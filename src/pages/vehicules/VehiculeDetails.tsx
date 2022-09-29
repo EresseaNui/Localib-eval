@@ -1,6 +1,5 @@
 import React from "react";
 
-import clsx from "clsx";
 import useFetch from "../../api/hooks/useFetch";
 import { NavLink, useParams } from "react-router-dom";
 import Layout from "../../component/UI/Layout/Layout";
