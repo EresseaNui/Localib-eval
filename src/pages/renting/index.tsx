@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { HiOutlineArrowNarrowLeft, HiOutlineTrash } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import Layout from "../../component/UI/Layout/Layout";
@@ -14,7 +14,6 @@ import { vehiculeService } from "../../services/vehiculeService";
 const RentingListPage: React.FC<unknown> = () => {
     const { data: rentings, reFetch } = useFetch("/rentings");
 
-    console.log(rentings);
 
     const onClickDelete = async (
         id: string,

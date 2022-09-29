@@ -3,8 +3,14 @@ import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import NewRentingForm from "../../component/Form/RentingForm/NewRentingForm";
 import Layout from "../../component/UI/Layout/Layout";
+import { CreateRentingPayload } from "../../services/rentingService";
 
 const NewRenting: React.FC<unknown> = () => {
+    const onSubmitNewReporting = async (
+        formValues: CreateRentingPayload
+    ): Promise<void> => {
+        console.log(formValues);
+    };
     return (
         <Layout>
             <div>
@@ -19,7 +25,7 @@ const NewRenting: React.FC<unknown> = () => {
                 </div>
                 <div>Louer un véhicule</div>
                 <div>
-                    <NewRentingForm />
+                    <NewRentingForm onSubmit={onSubmitNewReporting} />
                 </div>
             </div>
         </Layout>
