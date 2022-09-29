@@ -1,20 +1,13 @@
-import {
-    eachDayOfInterval,
-    formatDistance,
-    intervalToDuration,
-} from "date-fns";
-import React, { Key, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
     CreateRentingPayload,
-    rentingService,
 } from "../../../services/rentingService";
-import { vehiculeService } from "../../../services/vehiculeService";
 import { getDaysBetweenDates } from "../../../utils/convertDateToPeriod";
-import { api } from "../../../utils/dryConfig";
 import { SelectField } from "../UI";
 import useFetch from "../../../api/hooks/useFetch";
 import IVehicule from "../../../types/vehicule.type";
+import ICustomer from "../../../types/customer.type";
 export interface NewRentingFormProps {
     onSubmit: (value: CreateRentingPayload) => void;
 }
@@ -23,10 +16,16 @@ const NewRentingForm: React.FC<NewRentingFormProps> = ({
     onSubmit = () => {},
 }) => {
     const { data: vehicles } = useFetch("/vehicles");
+    const { data: customers } = useFetch("/customers");
 
     const optionsVehicle = vehicles.map((vehicle: IVehicule) => ({
         value: vehicle.id,
         label: `${vehicle.model} ${vehicle.brand}`,
+    }));
+
+    const optionsCustomer = customers.map((customer: ICustomer) => ({
+        value: customer.id,
+        label: `${customer.lastname} ${customer.firstname}`,
     }));
 
     const { handleSubmit, register, watch, setValue } =
@@ -41,7 +40,6 @@ const NewRentingForm: React.FC<NewRentingFormProps> = ({
     const isSelectedVehicle = (vehicle: IVehicule) => {
         return vehicle.id === watchVehicle;
     };
-
     useEffect(() => {
         const selectedVehicle = vehicles.find(isSelectedVehicle);
         console.log(selectedVehicle);
@@ -58,6 +56,12 @@ const NewRentingForm: React.FC<NewRentingFormProps> = ({
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
+            <SelectField
+                array={optionsCustomer}
+                {...register("customer_id")}
+                label="Client :"
+                defaultValue={optionsCustomer[0]}
+            />
             <div>
                 <label>Date de Début:</label>
                 <input
