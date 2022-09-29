@@ -14,15 +14,10 @@ import { vehiculeService } from "../../services/vehiculeService";
 const RentingListPage: React.FC<unknown> = () => {
     const { data: rentings, reFetch } = useFetch("/rentings");
 
-
     const onClickDelete = async (
         id: string,
         vehicleId: string
     ): Promise<void> => {
-        const payload = {
-            disponibility: true,
-        };
-        await vehiculeService.updateVehicule(vehicleId, payload);
         await rentingService.delete(id);
         reFetch();
     };

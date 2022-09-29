@@ -1,11 +1,7 @@
 import React from "react";
 
 import Layout from "../../component/UI/Layout/Layout";
-import { redirect } from "../../utils/redirect";
-import {
-    UpdateVehiculePayload,
-    vehiculeService,
-} from "../../services/vehiculeService";
+
 import { NavLink, useParams } from "react-router-dom";
 import UpdateVehiculeForm from "../../component/Form/VehiculeForm/UpdateVehiculeForm";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";

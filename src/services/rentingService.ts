@@ -10,6 +10,16 @@ export interface CreateRentingPayload {
 }
 
 class RentingService {
+   /* Une fonction qui prend une charge utile comme paramètre et renvoie une promesse. */
+    createNewRenting = (
+        payload: CreateRentingPayload
+    ): Promise<void | AxiosResponse<any, any>> => {
+        return api
+            .post(`/rentings`, payload)
+            .catch((err) => console.error(err));
+    };
+
+    /* Une fonction qui prend un identifiant comme paramètre et renvoie une promesse. */
     delete = (id: string): Promise<void | AxiosResponse<any, any>> => {
         return api.delete(`/rentings/${id}`).catch((err) => console.error(err));
     };

@@ -1,23 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-    CreateRentingPayload,
-} from "../../../services/rentingService";
+import { CreateRentingPayload } from "../../../services/rentingService";
 import { getDaysBetweenDates } from "../../../utils/convertDateToPeriod";
 import { SelectField } from "../UI";
-import useFetch from "../../../api/hooks/useFetch";
 import IVehicule from "../../../types/vehicule.type";
 import ICustomer from "../../../types/customer.type";
 export interface NewRentingFormProps {
+    vehicles: IVehicule[];
+    customers: ICustomer[];
     onSubmit: (value: CreateRentingPayload) => void;
 }
 
 const NewRentingForm: React.FC<NewRentingFormProps> = ({
+    vehicles,
+    customers,
     onSubmit = () => {},
 }) => {
-    const { data: vehicles } = useFetch("/vehicles");
-    const { data: customers } = useFetch("/customers");
-
     const optionsVehicle = vehicles.map((vehicle: IVehicule) => ({
         value: vehicle.id,
         label: `${vehicle.model} ${vehicle.brand}`,
@@ -41,15 +39,15 @@ const NewRentingForm: React.FC<NewRentingFormProps> = ({
         return vehicle.id === watchVehicle;
     };
     useEffect(() => {
-        const selectedVehicle = vehicles.find(isSelectedVehicle);
-        console.log(selectedVehicle);
+        const selectedVehicle: IVehicule | undefined =
+            vehicles.find(isSelectedVehicle);
 
-        if (watchStartDate && watchEndDate) {
+        if (watchStartDate && watchEndDate && selectedVehicle) {
             const interval = getDaysBetweenDates(
                 new Date(watchStartDate),
                 new Date(watchEndDate)
             );
-            setPricing(interval * 80);
+            setPricing(interval * selectedVehicle.renting_price);
             setValue("pricing", pricing);
         }
     }, [watchStartDate, watchEndDate, setPricing, pricing, watchVehicle]);

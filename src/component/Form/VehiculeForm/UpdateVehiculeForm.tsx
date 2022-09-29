@@ -31,7 +31,7 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
             ...vehicule,
             registration_number: formValues.registration_number,
             vehicle_state: formValues.vehicle_state,
-            disponibility: formValues.disponibility,
+            renting_price: formValues.renting_price,
         };
         await vehiculeService.updateVehicule(id as string, payload);
         reFetch();
@@ -70,12 +70,8 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
                         />
                     </div>
                     <div>
-                        <Label label="Loué :" name="louer" />
-                        <input
-                            type="checkbox"
-                            {...register("disponibility")}
-                            defaultChecked={vehicule.disponibility}
-                        />
+                        <label>Loué:</label>
+                        <input type="number" {...register("renting_price")} />
                     </div>
                     <button type="submit" className="px-4 py-2 border">
                         Ajouter la voiture

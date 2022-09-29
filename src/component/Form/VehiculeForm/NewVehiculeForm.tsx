@@ -61,11 +61,7 @@ const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
 
             <div>
                 <label>Loué:</label>
-                <input
-                    type="checkbox"
-                    {...register("disponibility")}
-                    defaultChecked={false}
-                />
+                <input type="number" {...register("renting_price")} />
             </div>
             <button type="submit" className="px-4 py-2 border">
                 Ajouter le véhicule voiture

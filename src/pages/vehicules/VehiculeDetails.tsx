@@ -34,11 +34,7 @@ const VehiculeDetails: React.FC<unknown> = () => {
                     <p>{vehicule.brand}</p>
                     <p>{vehicule.model}</p>
                     <p>{vehicule.registration_number}</p>
-                    {vehicule.disponibility ? (
-                        <p>Le véhicule est non disponible</p>
-                    ) : (
-                        <p>Le véhicule est disponible</p>
-                    )}
+                    <p>{vehicule.renting_price} €</p>
                     <p>{vehicule.vehicle_state}</p>
                 </div>
             </div>

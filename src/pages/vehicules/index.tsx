@@ -55,11 +55,7 @@ const VehiculeListPage: React.FC<unknown> = () => {
                             <p>{vehicule.type}</p>
                             <p>{vehicule.registration_number}</p>
                             <p>{vehicule.vehicle_state}</p>
-                            {vehicule.disponibility ? (
-                                <p>véhicule louer</p>
-                            ) : (
-                                <p>véhicule dispo</p>
-                            )}
+                            <p>{vehicule.renting_price} €</p>
                             <div>
                                 <p>actions: </p>
                                 <NavLink
