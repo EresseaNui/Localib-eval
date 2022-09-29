@@ -5,7 +5,12 @@ import {
 } from "date-fns";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { CreateRentingPayload } from "../../../services/rentingService";
+import {
+    CreateRentingPayload,
+    rentingService,
+} from "../../../services/rentingService";
+import { vehiculeService } from "../../../services/vehiculeService";
+import { api } from "../../../utils/dryConfig";
 
 export interface NewRentingFormProps {
     onSubmit: (value: CreateRentingPayload) => void;
@@ -14,15 +19,13 @@ export interface NewRentingFormProps {
 const NewRentingForm: React.FC<NewRentingFormProps> = ({
     onSubmit = () => {},
 }) => {
-    const { handleSubmit, register, watch } = useForm<CreateRentingPayload>();
+    const { handleSubmit, register, watch, setValue } =
+        useForm<CreateRentingPayload>();
     const ref = useRef(null);
     const [pricing, setPricing] = useState<number>(80);
 
     const watchStartDate = watch("start_date");
     const watchEndDate = watch("end_date");
-
-    console.log("d", watchStartDate);
-    console.log("e", watchEndDate);
 
     const convertMsToDays = (ms: number) => {
         const msInOneSecond = 1000;
@@ -53,9 +56,10 @@ const NewRentingForm: React.FC<NewRentingFormProps> = ({
                 new Date(watchStartDate),
                 new Date(watchEndDate)
             );
-            // setPricing(interval * 80);
+            setPricing(interval * 80);
+            setValue("pricing", pricing);
         }
-    }, [watchStartDate, watchEndDate]);
+    }, [watchStartDate, watchEndDate, setPricing, pricing]);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -75,11 +79,7 @@ const NewRentingForm: React.FC<NewRentingFormProps> = ({
             </div>
             {watchStartDate && watchEndDate && (
                 <div>
-                    {/* <input
-                        type="number"
-                        disabled
-                        {...(register("pricing"), { value: pricing })}
-                    /> */}
+                    <p>{pricing} €</p>
                 </div>
             )}
             <button type="submit" className="px-4 py-2 border">
