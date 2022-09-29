@@ -1,15 +1,14 @@
 import React from "react";
 
-import clsx from "clsx";
 import Layout from "../../component/UI/Layout/Layout";
-import { NavLink } from "react-router-dom";
-import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import NewCustomerForm from "../../component/Form/CustomerForm/NewCustomerForm";
 import {
     CustomerPayload,
     customerService,
 } from "../../services/customerService";
 import { redirect } from "../../utils/redirect";
+import { FiUserPlus } from "react-icons/fi";
+import { TitleWithReturn } from "../../component/UI";
 
 export interface NewCustomerProps {
     className?: string;
@@ -25,16 +24,11 @@ const NewCustomer: React.FC<unknown> = () => {
     return (
         <Layout>
             <div>
-                <div>
-                    <NavLink
-                        to="/vehicules"
-                        className="flex items-center space-x-1"
-                    >
-                        <HiOutlineArrowNarrowLeft className="mt-1" />
-                        <p>retour</p>
-                    </NavLink>
-                </div>
-                <div>Ajouter un nouveau client</div>
+                <TitleWithReturn
+                    title="Ajouter un nouveau client"
+                    path="/customers"
+                    icon={<FiUserPlus />}
+                />
                 <div>
                     <NewCustomerForm onSubmit={onSubmitNewCustomer} />
                 </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { HiOutlineArrowNarrowLeft, HiOutlineTrash } from "react-icons/hi";
+import { HiOutlineTrash } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import Layout from "../../component/UI/Layout/Layout";
 import { MdOutlineCarRental } from "react-icons/md";
@@ -9,15 +9,12 @@ import IRenting from "../../types/renting.type";
 import { Key } from "react-hook-form/dist/types/path/common";
 import { format } from "date-fns";
 import { rentingService } from "../../services/rentingService";
-import { vehiculeService } from "../../services/vehiculeService";
+import { TitleWithReturn } from "../../component/UI";
 
 const RentingListPage: React.FC<unknown> = () => {
     const { data: rentings, reFetch } = useFetch("/rentings");
 
-    const onClickDelete = async (
-        id: string,
-        vehicleId: string
-    ): Promise<void> => {
+    const onClickDelete = async (id: string): Promise<void> => {
         await rentingService.delete(id);
         reFetch();
     };
@@ -25,16 +22,10 @@ const RentingListPage: React.FC<unknown> = () => {
     return (
         <Layout>
             <div className="space-y-5">
-                <div className="flex items-center gap-2 text-3xl text-blue-primary">
-                    <p className="font-semibold ">Liste des véhicules</p>
-                    <MdOutlineCarRental />
-                </div>
-                <div>
-                    <NavLink to="/" className="flex items-center space-x-1">
-                        <HiOutlineArrowNarrowLeft className="mt-1" />
-                        <p>retour</p>
-                    </NavLink>
-                </div>
+                <TitleWithReturn
+                    title="Liste des Locations"
+                    icon={<MdOutlineCarRental />}
+                />
                 <div>
                     <p>Retrouvez la liste des locations</p>
                 </div>
@@ -95,12 +86,7 @@ const RentingListPage: React.FC<unknown> = () => {
                                 </NavLink>
                                 <button
                                     type="button"
-                                    onClick={() =>
-                                        onClickDelete(
-                                            renting.id,
-                                            renting.vehicle.id
-                                        )
-                                    }
+                                    onClick={() => onClickDelete(renting.id)}
                                     className="flex items-center gap-4 px-4 py-2 text-center text-white bg-red-500 border rounded-full hover:bg-red-600 w-fit"
                                 >
                                     <HiOutlineTrash />

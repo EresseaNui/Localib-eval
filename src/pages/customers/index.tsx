@@ -1,9 +1,9 @@
 import React from "react";
 
 import Layout from "../../component/UI/Layout/Layout";
-import { FiUser } from "react-icons/fi";
+import { FiUsers } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
-import { HiOutlineArrowNarrowLeft, HiOutlineTrash } from "react-icons/hi";
+import { HiOutlineTrash } from "react-icons/hi";
 import { AiOutlineEye, AiOutlinePlusCircle } from "react-icons/ai";
 import useFetch from "../../api/hooks/useFetch";
 import { Key } from "react-hook-form/dist/types/path/common";
@@ -11,6 +11,7 @@ import ICustomer from "../../types/customer.type";
 import { BiPencil } from "react-icons/bi";
 import { format } from "date-fns";
 import { customerService } from "../../services/customerService";
+import { TitleWithReturn } from "../../component/UI";
 
 const CustomerListPage: React.FC<unknown> = () => {
     const { data: customers, reFetch } = useFetch("/customers");
@@ -23,16 +24,7 @@ const CustomerListPage: React.FC<unknown> = () => {
     return (
         <Layout>
             <div className="space-y-5">
-                <div className="flex items-center gap-2 text-3xl text-blue-primary">
-                    <p className="font-semibold ">Liste des Clients</p>
-                    <FiUser />
-                </div>
-                <div>
-                    <NavLink to="/" className="flex items-center space-x-1">
-                        <HiOutlineArrowNarrowLeft className="mt-1" />
-                        <p>retour</p>
-                    </NavLink>
-                </div>
+                <TitleWithReturn title="Liste des Clients" icon={<FiUsers />} />
                 <div>
                     <NavLink
                         to={`/customer/new`}

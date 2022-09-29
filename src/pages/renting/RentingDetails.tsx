@@ -1,7 +1,9 @@
 import React, { Key } from "react";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
+import { MdCarRental } from "react-icons/md";
 import { NavLink, useParams } from "react-router-dom";
 import useFetch from "../../api/hooks/useFetch";
+import { TitleWithReturn } from "../../component/UI";
 import Layout from "../../component/UI/Layout/Layout";
 import IVehicule from "../../types/vehicule.type";
 import { formattedDate } from "../../utils/formatDate";
@@ -14,18 +16,11 @@ const RentingDetails: React.FC<unknown> = () => {
     return (
         <Layout>
             <div>
-                <div>
-                    <NavLink
-                        to="/rentings"
-                        className="flex items-center space-x-1"
-                    >
-                        <HiOutlineArrowNarrowLeft className="mt-1" />
-                        <p>retour</p>
-                    </NavLink>
-                </div>
-                <div>
-                    <p>Details de Location</p>
-                </div>
+                <TitleWithReturn
+                    title="Details de la Location"
+                    path="/rentings"
+                    icon={<MdCarRental />}
+                />
                 <div>
                     <p>
                         Début :

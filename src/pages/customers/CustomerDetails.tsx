@@ -1,8 +1,8 @@
-import { format } from "date-fns";
 import React from "react";
-import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
-import { NavLink, useParams } from "react-router-dom";
+import { FiUser } from "react-icons/fi";
+import { useParams } from "react-router-dom";
 import useFetch from "../../api/hooks/useFetch";
+import { TitleWithReturn } from "../../component/UI";
 
 import Layout from "../../component/UI/Layout/Layout";
 import { formattedDate } from "../../utils/formatDate";
@@ -15,15 +15,11 @@ const CustomerDetails: React.FC<unknown> = () => {
     return (
         <Layout>
             <div>
-                <div>
-                    <NavLink
-                        to="/customers"
-                        className="flex items-center space-x-1"
-                    >
-                        <HiOutlineArrowNarrowLeft className="mt-1" />
-                        <p>retour</p>
-                    </NavLink>
-                </div>
+                <TitleWithReturn
+                    title={`Détails client : ${customer.firstname} ${customer.lastname}`}
+                    path="/customers"
+                    icon={<FiUser />}
+                />
                 <div>
                     <p>
                         Detail de {customer.lastname}&nbsp;

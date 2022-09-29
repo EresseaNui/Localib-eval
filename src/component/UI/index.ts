@@ -1,3 +1,4 @@
 import Button from "./Button";
+import TitleWithReturn from "./TitleWithReturn";
 
-export { Button };
+export { Button, TitleWithReturn };

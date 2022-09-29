@@ -10,13 +10,19 @@ import { useForm } from "react-hook-form";
 import { redirect } from "../../../utils/redirect";
 import { formattedDate } from "../../../utils/formatDate";
 import { TextField } from "../UI";
+import ICustomer from "../../../types/customer.type";
 
 export interface UpdateCustomerFormProps {
     id: string;
+    customer: ICustomer;
+    reFetch: () => void;
 }
 
-const UpdateCustomerForm: React.FC<UpdateCustomerFormProps> = ({ id }) => {
-    const { data: customer, reFetch } = useFetch(`/customers/${id}`);
+const UpdateCustomerForm: React.FC<UpdateCustomerFormProps> = ({
+    id,
+    customer,
+    reFetch,
+}) => {
     const { handleSubmit, register } = useForm<CustomerPayload>();
 
     const onSubmitUpdateCustomer = async (

@@ -2,11 +2,12 @@ import React, { Key } from "react";
 import useFetch from "../../api/hooks/useFetch";
 import Layout from "../../component/UI/Layout/Layout";
 import { AiFillCar, AiOutlineEye, AiOutlinePlusCircle } from "react-icons/ai";
-import { HiOutlineArrowNarrowLeft, HiOutlineTrash } from "react-icons/hi";
+import { HiOutlineTrash } from "react-icons/hi";
 import { BiPencil } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 import IVehicule from "../../types/vehicule.type";
 import { vehiculeService } from "../../services/vehiculeService";
+import { TitleWithReturn } from "../../component/UI";
 
 const VehiculeListPage: React.FC<unknown> = () => {
     const { data: vehicules, reFetch } = useFetch("/vehicles");
@@ -19,16 +20,10 @@ const VehiculeListPage: React.FC<unknown> = () => {
     return (
         <Layout>
             <div className="space-y-5">
-                <div className="flex items-center gap-2 text-3xl text-blue-primary">
-                    <p className="font-semibold ">Liste des véhicules</p>
-                    <AiFillCar />
-                </div>
-                <div>
-                    <NavLink to="/" className="flex items-center space-x-1">
-                        <HiOutlineArrowNarrowLeft className="mt-1" />
-                        <p>retour</p>
-                    </NavLink>
-                </div>
+                <TitleWithReturn
+                    title="Liste des véhicules"
+                    icon={<AiFillCar />}
+                />
                 <div>
                     <p>
                         Retrouvez la liste des véhicules, ainsi que leur

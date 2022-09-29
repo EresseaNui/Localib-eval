@@ -4,6 +4,8 @@ import useFetch from "../../api/hooks/useFetch";
 import { NavLink, useParams } from "react-router-dom";
 import Layout from "../../component/UI/Layout/Layout";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
+import { TitleWithReturn } from "../../component/UI";
+import { AiOutlineCar } from "react-icons/ai";
 
 const VehiculeDetails: React.FC<unknown> = () => {
     const { id } = useParams();
@@ -13,15 +15,11 @@ const VehiculeDetails: React.FC<unknown> = () => {
     return (
         <Layout>
             <div>
-                <div>
-                    <NavLink
-                        to="/vehicules"
-                        className="flex items-center space-x-1"
-                    >
-                        <HiOutlineArrowNarrowLeft className="mt-1" />
-                        <p>retour</p>
-                    </NavLink>
-                </div>
+                <TitleWithReturn
+                    title="Detail du Véhicule"
+                    path="/vehicules"
+                    icon={<AiOutlineCar />}
+                />
                 <div>
                     <p>
                         Detail de {vehicule.brand}&nbsp;

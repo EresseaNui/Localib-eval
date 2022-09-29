@@ -1,7 +1,9 @@
 import React from "react";
+import { AiOutlineCar } from "react-icons/ai";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import NewVehiculeForm from "../../component/Form/VehiculeForm/NewVehiculeForm";
+import { TitleWithReturn } from "../../component/UI";
 import Layout from "../../component/UI/Layout/Layout";
 import {
     NewVehiculePayload,
@@ -19,16 +21,11 @@ const NewVehiculePage: React.FC<unknown> = () => {
     return (
         <Layout>
             <div>
-                <div>
-                    <NavLink
-                        to="/vehicules"
-                        className="flex items-center space-x-1"
-                    >
-                        <HiOutlineArrowNarrowLeft className="mt-1" />
-                        <p>retour</p>
-                    </NavLink>
-                </div>
-                <div>Ajouter un nouveau véhicule</div>
+                <TitleWithReturn
+                    title="Ajouter un nouveau Véhicule"
+                    path="/vehicules"
+                    icon={<AiOutlineCar />}
+                />
                 <div>
                     <NewVehiculeForm onSubmit={onSubmitNewVehicule} />
                 </div>

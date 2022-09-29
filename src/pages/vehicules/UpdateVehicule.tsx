@@ -5,6 +5,8 @@ import Layout from "../../component/UI/Layout/Layout";
 import { NavLink, useParams } from "react-router-dom";
 import UpdateVehiculeForm from "../../component/Form/VehiculeForm/UpdateVehiculeForm";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
+import { TitleWithReturn } from "../../component/UI";
+import { AiOutlineCar } from "react-icons/ai";
 
 const UpdateVehicule: React.FC<unknown> = () => {
     const { id } = useParams();
@@ -12,16 +14,11 @@ const UpdateVehicule: React.FC<unknown> = () => {
     return (
         <Layout>
             <div>
-                <div>
-                    <NavLink
-                        to="/vehicules"
-                        className="flex items-center space-x-1"
-                    >
-                        <HiOutlineArrowNarrowLeft className="mt-1" />
-                        <p>retour</p>
-                    </NavLink>
-                </div>
-                <div>Modifier véhicule</div>
+                <TitleWithReturn
+                    title="Modifier le Véhicule"
+                    path="/vehicules"
+                    icon={<AiOutlineCar />}
+                />
                 {id && (
                     <div>
                         <UpdateVehiculeForm id={id} />
