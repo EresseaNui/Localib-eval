@@ -1,6 +1,4 @@
 import React from "react";
-
-import clsx from "clsx";
 import { CreateRentingPayload } from "../../../services/rentingService";
 import { UseFormRegister } from "react-hook-form";
 import { SelectField } from "../UI";
