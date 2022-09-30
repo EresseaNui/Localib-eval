@@ -66,7 +66,6 @@ const NewRentingForm: React.FC<NewRentingFormProps> = ({
     const onSubmitNewReporting = async (
         formValues: CreateRentingPayload
     ): Promise<void> => {
-        console.log(formValues);
         const payload = {
             pricing: pricing,
             start_date: formValues.start_date,
