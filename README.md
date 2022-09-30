@@ -11,3 +11,5 @@ une fois les dépendance installées pour lancer le projet il faut utiliser la c
 ```bash
 $ npm start
 ```
+
+N'oublier pas de lancer le projet api correspondant
