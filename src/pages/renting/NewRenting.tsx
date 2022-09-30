@@ -16,12 +16,7 @@ const NewRenting: React.FC<unknown> = () => {
     const { data: vehicles } = useFetch("/vehicles");
     const { data: customers } = useFetch("/customers");
 
-    const onSubmitNewReporting = async (
-        formValues: CreateRentingPayload
-    ): Promise<void> => {
-        await rentingService.createNewRenting(formValues);
-        redirect("/rentings");
-    };
+   
     return (
         <Layout>
             <div>
@@ -32,7 +27,6 @@ const NewRenting: React.FC<unknown> = () => {
                 />
                 <div>
                     <NewRentingForm
-                        onSubmit={onSubmitNewReporting}
                         vehicles={vehicles}
                         customers={customers}
                     />

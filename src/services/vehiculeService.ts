@@ -18,7 +18,7 @@ export interface UpdateVehiculePayload {
 }
 
 class VehiculeService {
-   /* Une fonction qui crée un nouveau véhicule dans la base de données. */
+    /* Une fonction qui crée un nouveau véhicule dans la base de données. */
     createNewVehicule = (
         payload: NewVehiculePayload
     ): Promise<void | AxiosResponse<any, any>> => {
@@ -40,6 +40,16 @@ class VehiculeService {
     /* Une fonction qui supprime un véhicule de la base de données. */
     delete = (id: string): Promise<void | AxiosResponse<any, any>> => {
         return api.delete(`/vehicles/${id}`).catch((err) => console.error(err));
+    };
+
+    getAviableVehicle = async (payload: any) => {
+        try {
+            return await api
+                .post(`/vehicles/disponibility`, payload)
+                .then((res) => res.data);
+        } catch (error) {
+            return Promise.reject(error);
+        }
     };
 }
 
