@@ -109,7 +109,13 @@ const Layout: React.FC<LayoutProps> = ({
                         </div>
                     </div>
                 )}
-                <div className="p-10 ml-auto sm:ml-64">{children}</div>
+                <div
+                    className={clsx("p-10 ml-auto w-full", {
+                        "sm:ml-64": navMenu,
+                    })}
+                >
+                    {children}
+                </div>
             </div>
         </div>
     );

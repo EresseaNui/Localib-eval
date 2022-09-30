@@ -5,10 +5,6 @@ import Layout from "../component/UI/Layout/Layout";
 const HomePage: React.FC<unknown> = () => {
     const links = [
         {
-            name: "Acceuil",
-            uri: "/",
-        },
-        {
             name: "Location véhicules",
             uri: "/renting",
         },
