@@ -17,7 +17,7 @@ const CustomerListPage: React.FC<unknown> = () => {
                 <div>
                     <NavLink
                         to={`/customer/new`}
-                        className="flex items-center font-semibold gap-4 px-4 py-2 text-center text-white bg-green-500 border rounded-full hover:bg-green-600 w-fit"
+                        className="flex items-center gap-4 px-4 py-2 font-semibold text-center text-white bg-green-500 border rounded-full hover:bg-green-600 w-fit"
                     >
                         <AiOutlinePlusCircle className="w-8 h-8" />
                         Ajouter un client

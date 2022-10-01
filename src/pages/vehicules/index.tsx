@@ -8,9 +8,10 @@ import { NavLink } from "react-router-dom";
 import IVehicule from "../../types/vehicule.type";
 import { vehiculeService } from "../../services/vehiculeService";
 import { TitleWithReturn } from "../../component/UI";
+import VehiclesTable from "../../component/DisclosureArray/VehiclesTable";
 
 const VehiculeListPage: React.FC<unknown> = () => {
-    const { data: vehicules, reFetch } = useFetch("/vehicles");
+    const { data: vehicles, reFetch } = useFetch("/vehicles");
 
     const onClickDelete = async (id: string): Promise<void> => {
         await vehiculeService.delete(id);
@@ -40,7 +41,7 @@ const VehiculeListPage: React.FC<unknown> = () => {
                     </NavLink>
                 </div>
                 <div>
-                    {vehicules.map((vehicule: IVehicule, key: Key) => (
+                    {/* {vehicules.map((vehicule: IVehicule, key: Key) => (
                         <div
                             className="p-5 border rounded-lg border-blue-primary"
                             key={key}
@@ -77,7 +78,8 @@ const VehiculeListPage: React.FC<unknown> = () => {
                                 </button>
                             </div>
                         </div>
-                    ))}
+                    ))} */}
+                    <VehiclesTable vehicles={vehicles} reFetch={reFetch} />
                 </div>
             </div>
         </Layout>
