@@ -83,9 +83,9 @@ const CustomerDetails: React.FC<unknown> = () => {
                     {rentingsHistory.map((renting: IRenting, key: Key) => (
                         <div
                             key={key}
-                            className="flex justify-between p-4 border border-black rounded-lg"
+                            className="flex p-4 border-2 border-black rounded-lg shadow-inner"
                         >
-                            <div>
+                            <div className="w-1/2">
                                 <p>
                                     <span className="font-semibold">
                                         Début :&nbsp;
@@ -115,7 +115,7 @@ const CustomerDetails: React.FC<unknown> = () => {
                                     {renting.pricing} €
                                 </p>
                             </div>
-                            <div>
+                            <div className="w-1/2">
                                 <p>
                                     <span className="font-semibold">
                                         Marque :&nbsp;
