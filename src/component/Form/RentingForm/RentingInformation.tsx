@@ -31,26 +31,35 @@ const RentingInformation: React.FC<RentingInformationProps> = ({
     }));
 
     return (
-        <div>
-            <div>
-                <SelectField
-                    array={optionsCustomer}
-                    {...register("customer_id")}
-                    label="Client :"
-                    defaultValue={"Selectionner un client"}
-                />
+        <div className="flex flex-col items-center w-full space-y-5">
+            <SelectField
+                array={optionsCustomer}
+                {...register("customer_id")}
+                label="Client :"
+                defaultValue={"Selectionner un client"}
+            />
 
-                <SelectField
-                    array={optionsVehicle}
-                    {...register("vehicle_id")}
-                    label="Vehicule :"
-                    defaultValue={"Selectionner un véhicule"}
-                />
-            </div>
+            <SelectField
+                array={optionsVehicle}
+                {...register("vehicle_id")}
+                label="Vehicule :"
+                defaultValue={"Selectionner un véhicule"}
+            />
 
-            {price && price > 0 ? <p>Prix : {price} €</p> : ""}
+            {price && price > 0 ? (
+                <p className="text-lg font-semibold text-blue-primary">
+                    Prix : {price} €
+                </p>
+            ) : (
+                ""
+            )}
 
-            <Button type="submit" variant="outlined" color="white">
+            <Button
+                type="submit"
+                variant="outlined"
+                color="white"
+                className="justify-center w-1/2"
+            >
                 Louer le Véhicule
             </Button>
         </div>

@@ -79,7 +79,10 @@ const NewRentingForm: React.FC<NewRentingFormProps> = ({
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmitNewReporting)}>
+        <form
+            onSubmit={handleSubmit(onSubmitNewReporting)}
+            className="flex flex-col items-center w-2/3 p-10 space-y-4 border-2 rounded-lg shadow-md border-blue-primary"
+        >
             <RentingPeriod
                 register={register}
                 startDate={startDate}

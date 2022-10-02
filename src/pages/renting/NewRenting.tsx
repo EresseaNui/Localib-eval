@@ -9,21 +9,15 @@ const NewRenting: React.FC<unknown> = () => {
     const { data: vehicles } = useFetch("/vehicles");
     const { data: customers } = useFetch("/customers");
 
-   
     return (
         <Layout>
-            <div>
+            <div className="space-y-10">
                 <TitleWithReturn
                     title="Louer un véhicule"
                     path="/rentings"
                     icon={<MdOutlineCarRental />}
                 />
-                <div>
-                    <NewRentingForm
-                        vehicles={vehicles}
-                        customers={customers}
-                    />
-                </div>
+                <NewRentingForm vehicles={vehicles} customers={customers} />
             </div>
         </Layout>
     );
