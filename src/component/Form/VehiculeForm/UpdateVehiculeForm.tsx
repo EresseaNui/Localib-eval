@@ -6,16 +6,20 @@ import {
 import useFetch from "../../../api/hooks/useFetch";
 import { useForm } from "react-hook-form";
 import { redirect } from "../../../utils/redirect";
-import { SelectField, TextField } from "../UI";
-import { Button } from "../../UI";
+import { Label, SelectField, TextField } from "../UI";
+import { Button, Card } from "../../UI";
+import IVehicule from "../../../types/vehicule.type";
 
 export interface UpdateVehiculeFormProps {
-    id: string;
+    vehicle: IVehicule;
+    reFetch: () => Promise<void>;
 }
 
-const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
-    const { data: vehicule, reFetch } = useFetch(`/vehicles/${id}`);
-    const { handleSubmit, register } = useForm<UpdateVehiculePayload>();
+const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({
+    vehicle,
+    reFetch,
+}) => {
+    const { handleSubmit, register } = useForm<UpdateVehiculePayload>({});
     const ref = useRef(null);
 
     const optionEtat = [
@@ -29,50 +33,81 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
         formValues: UpdateVehiculePayload
     ): Promise<void> => {
         const payload = {
-            ...vehicule,
+            ...vehicle,
             registration_number: formValues.registration_number,
             vehicle_state: formValues.vehicle_state,
             renting_price: formValues.renting_price,
         };
-        await vehiculeService.updateVehicule(id as string, payload);
+        await vehiculeService.updateVehicule(vehicle.id as string, payload);
         reFetch();
         redirect("/vehicules");
     };
 
     return (
-        <div>
-            <div>
-                <p>
-                    Detail de {vehicule.brand}&nbsp;
-                    {vehicule.model}
-                </p>
-            </div>
-            <div>
-                <p>{vehicule.type}</p>
-                <p>{vehicule.brand}</p>
-                <p>{vehicule.model}</p>
-            </div>
-            <div>
-                <form onSubmit={handleSubmit(onSubmitUpdateVehicule)}>
-                    <div>
-                        <TextField
-                            label="Immatriculation :"
-                            className="border border-blue-primary"
-                            {...register("registration_number")}
-                            defaultValue={vehicule.registration_number}
+        <div className="space-y-10">
+            <Card title={`Détails de ${vehicle.brand} ${vehicle.model}`}>
+                <div>
+                    <p>
+                        <span className="font-semibold">Marque :&nbsp;</span>
+                        {vehicle.brand}
+                    </p>
+                    <p>
+                        <span className="font-semibold">Modèle :&nbsp;</span>
+                        {vehicle.model}
+                    </p>
+                    <p>
+                        <span className="font-semibold">
+                            Immatriculation :&nbsp;
+                        </span>
+                        {vehicle.registration_number}
+                    </p>
+                    <p>
+                        <span className="font-semibold">
+                            Etat du véhicule :&nbsp;
+                        </span>
+                        {vehicle.vehicle_state}
+                    </p>
+                    <p>
+                        <span className="font-semibold">
+                            Prix en €/jour :&nbsp;
+                        </span>
+                        {vehicle.renting_price} €
+                    </p>
+                </div>
+            </Card>
+            <div className="flex justify-center">
+                <form
+                    onSubmit={handleSubmit(onSubmitUpdateVehicule)}
+                    className="flex flex-col items-center w-2/3 p-10 space-y-4 border-2 rounded-lg shadow-md border-blue-primary"
+                >
+                    <TextField
+                        label="Immatriculation :"
+                        className="border border-blue-primary"
+                        {...register("registration_number")}
+                        defaultValue={vehicle.registration_number}
+                        placeholder={vehicle.registration_number}
+                    />
+
+                    <SelectField
+                        array={optionEtat}
+                        {...register("vehicle_state")}
+                        label="Etat :"
+                        defaultValue={vehicle.vehicle_state}
+                    />
+
+                    <div className="w-full">
+                        <Label
+                            name="renting_price"
+                            label="Prix de location en €/jour"
+                            className="font-semibold"
                         />
-                    </div>
-                    <div>
-                        <SelectField
-                            array={optionEtat}
-                            {...register("vehicle_state")}
-                            label="Etat :"
-                            defaultValue={vehicule.vehicle_state}
+                        <input
+                            type="number"
+                            {...register("renting_price")}
+                            className="w-full px-4 py-2 border border-black rounded-full"
+                            defaultValue={vehicle.renting_price}
+                            placeholder={String(vehicle.renting_price)}
                         />
-                    </div>
-                    <div>
-                        <label>Loué:</label>
-                        <input type="number" {...register("renting_price")} />
                     </div>
 
                     <Button type="submit" variant="outlined" color="white">

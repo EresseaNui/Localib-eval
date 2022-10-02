@@ -15,7 +15,7 @@ const VehiculeDetails: React.FC<unknown> = () => {
 
     const onClickDelete = async (id: string): Promise<void> => {
         await vehiculeService.delete(id);
-        redirect("/customers");
+        redirect("/vehicules");
     };
 
     return (
@@ -58,7 +58,7 @@ const VehiculeDetails: React.FC<unknown> = () => {
                 </Card>
                 <div className="flex justify-around w-1/2">
                     <NavLink
-                        to={`/customer/${vehicule.id}/update`}
+                        to={`/vehicule/${vehicule.id}/update`}
                         className="flex items-center justify-center w-full gap-4 px-4 py-2 text-center text-white border rounded-full bg-blue-primary hover:bg-blue-700 md:w-fit"
                     >
                         <BiPencil />

@@ -22,27 +22,26 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             error,
             placeholder,
             labelClassName,
-            containerClassName = "",
+            containerClassName,
             onKeyDown,
             ...registerProps
         },
         ref
     ) => {
         return (
-            <div className={clsx(containerClassName)}>
+            <div className={clsx("w-full", containerClassName)}>
                 {label && (
                     <Label
                         label={label}
                         name={registerProps.name}
-                        labelClassName={labelClassName}
+                        labelClassName={clsx("font-semibold", labelClassName)}
                     />
                 )}
                 <input
                     id={registerProps.name}
                     type={type}
                     className={clsx(
-                        "border border-gray-900 rounded-full px-4 py-2",
-                        { "ml-2": label },
+                        "border border-gray-900 rounded-full px-4 py-2 w-full",
                         className
                     )}
                     placeholder={placeholder}

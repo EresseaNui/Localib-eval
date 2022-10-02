@@ -26,22 +26,30 @@ const SelectField = React.forwardRef<HTMLSelectElement, SelectFieldProps>(
         ref
     ) => {
         return (
-            <div className={clsx(containerClassName)}>
+            <div className={clsx("w-full", containerClassName)}>
                 {label && (
                     <Label
                         label={label}
                         name={registerProps.name}
-                        labelClassName={labelClassName}
+                        labelClassName={clsx("font-semibold", labelClassName)}
                     />
                 )}
                 <select
                     id={registerProps.name}
-                    className={clsx("", {}, className)}
+                    className={clsx(
+                        "w-full border border-gray-900 px-4 py-2 rounded-full",
+                        {},
+                        className
+                    )}
                     {...registerProps}
                     ref={ref}
                 >
                     {array.map((option, key) => (
-                        <option key={key} value={option.value}>
+                        <option
+                            key={key}
+                            value={option.value}
+                            className="bg-blue-100"
+                        >
                             {option.label}
                         </option>
                     ))}

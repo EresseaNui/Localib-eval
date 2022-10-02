@@ -1,9 +1,7 @@
 import React from "react";
 
-import clsx from "clsx";
 import Layout from "../../component/UI/Layout/Layout";
-import { NavLink, useParams } from "react-router-dom";
-import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
+import { useParams } from "react-router-dom";
 import UpdateCustomerForm from "../../component/Form/CustomerForm/UpdateCustomerForm";
 import { TitleWithReturn } from "../../component/UI";
 import useFetch from "../../api/hooks/useFetch";
@@ -25,13 +23,11 @@ const UpdateCustomer: React.FC<UpdateCustomerProps> = ({ className = "" }) => {
                     icon={<RiUserSettingsLine />}
                 />
                 {id && (
-                    <div>
-                        <UpdateCustomerForm
-                            id={id}
-                            customer={customer}
-                            reFetch={reFetch}
-                        />
-                    </div>
+                    <UpdateCustomerForm
+                        id={id}
+                        customer={customer}
+                        reFetch={reFetch}
+                    />
                 )}
             </div>
         </Layout>

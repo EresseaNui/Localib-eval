@@ -20,13 +20,13 @@ const NewVehiculePage: React.FC<unknown> = () => {
     };
     return (
         <Layout>
-            <div>
+            <div className="space-y-10">
                 <TitleWithReturn
                     title="Ajouter un nouveau Véhicule"
                     path="/vehicules"
                     icon={<AiOutlineCar />}
                 />
-                <div>
+                <div className="flex justify-center">
                     <NewVehiculeForm onSubmit={onSubmitNewVehicule} />
                 </div>
             </div>

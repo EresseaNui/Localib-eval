@@ -17,6 +17,11 @@ export interface UpdateVehiculePayload {
     renting_price?: number;
 }
 
+export interface DatePayload {
+    start_date: string;
+    end_date: string;
+}
+
 class VehiculeService {
     /* Une fonction qui crée un nouveau véhicule dans la base de données. */
     createNewVehicule = (
@@ -42,7 +47,7 @@ class VehiculeService {
         return api.delete(`/vehicles/${id}`).catch((err) => console.error(err));
     };
 
-    getAviableVehicle = async (payload: any) => {
+    getAviableVehicle = async (payload: DatePayload) => {
         try {
             return await api
                 .post(`/vehicles/disponibility`, payload)

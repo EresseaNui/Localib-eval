@@ -48,12 +48,16 @@ const NewCustomerForm: React.FC<NewCustomerFormProps> = ({
                 error={errors.phone}
             />
 
-            <div>
-                <Label name="birthdate" label="Date de naissance : " />
+            <div className="w-full">
+                <Label
+                    name="birthdate"
+                    label="Date de naissance : "
+                    className="font-semibold"
+                />
                 <input
                     type="date"
                     {...register("birthdate", { required: true })}
-                    className="px-4 py-2 border border-gray-900 rounded-full"
+                    className="w-full px-4 py-2 border border-gray-900 rounded-full"
                 />
             </div>
 

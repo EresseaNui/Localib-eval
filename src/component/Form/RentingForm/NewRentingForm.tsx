@@ -8,7 +8,10 @@ import IVehicule from "../../../types/vehicule.type";
 import ICustomer from "../../../types/customer.type";
 import RentingPeriod from "./RentingPeriod";
 import RentingInformation from "./RentingInformation";
-import { vehiculeService } from "../../../services/vehiculeService";
+import {
+    DatePayload,
+    vehiculeService,
+} from "../../../services/vehiculeService";
 import { redirect } from "../../../utils/redirect";
 
 export interface NewRentingFormProps {
@@ -38,10 +41,7 @@ const NewRentingForm: React.FC<NewRentingFormProps> = ({
         aviabilityVehicle({ start_date: startDate, end_date: endDate });
     }, [startDate, endDate]);
 
-    const aviabilityVehicle = async (payload: {
-        start_date: string;
-        end_date: string;
-    }): Promise<void> => {
+    const aviabilityVehicle = async (payload: DatePayload): Promise<void> => {
         if (startDate && endDate) {
             vehiculeService
                 .getAviableVehicle(payload)

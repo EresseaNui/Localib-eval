@@ -19,7 +19,7 @@ class RentingService {
             .catch((err) => console.error(err));
     };
 
-    getRentingHistory = async (id: string) => {
+    getRentingHistory = async (id: string): Promise<any> => {
         try {
             return await api.post(`/rentings/${id}`).then((res) => res.data);
         } catch (error) {
