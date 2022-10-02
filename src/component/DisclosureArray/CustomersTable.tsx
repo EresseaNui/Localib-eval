@@ -7,6 +7,7 @@ import { BiPencil } from "react-icons/bi";
 import { AiOutlineEye } from "react-icons/ai";
 import { HiOutlineTrash } from "react-icons/hi";
 import { customerService } from "../../services/customerService";
+import { Button } from "../UI";
 
 export interface CustomersTableProps {
     customers: ICustomer[];
@@ -74,16 +75,16 @@ const CustomersTable: React.FC<CustomersTableProps> = ({
                                         <AiOutlineEye />
                                         Voir
                                     </NavLink>
-                                    <button
-                                        type="button"
+                                    <Button
+                                        icon="trash"
+                                        variant="basic"
+                                        color="red"
                                         onClick={() =>
                                             onClickDelete(customer.id)
                                         }
-                                        className="flex items-center justify-center w-full gap-4 px-4 py-2 text-center text-white bg-red-500 border rounded-full hover:bg-red-600 md:w-fit"
                                     >
-                                        <HiOutlineTrash />
                                         Supprimer
-                                    </button>
+                                    </Button>
                                 </div>
                             </Disclosure.Panel>
                         </>

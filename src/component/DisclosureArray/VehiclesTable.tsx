@@ -11,6 +11,7 @@ import { HiOutlineTrash, HiOutlineTruck } from "react-icons/hi";
 import { FiTruck } from "react-icons/fi";
 import { IoCarOutline } from "react-icons/io5";
 import { RiMotorbikeFill } from "react-icons/ri";
+import { Button } from "../UI";
 
 export interface VehiclesTableProps {
     vehicles: IVehicule[];
@@ -96,16 +97,16 @@ const VehiclesTable: React.FC<VehiclesTableProps> = ({ vehicles, reFetch }) => {
                                         <AiOutlineEye />
                                         Voir
                                     </NavLink>
-                                    <button
-                                        type="button"
+                                    <Button
+                                        icon="trash"
+                                        variant="basic"
+                                        color="red"
                                         onClick={() =>
                                             onClickDelete(vehicle.id)
                                         }
-                                        className="flex items-center justify-center w-full gap-4 px-4 py-2 text-center text-white bg-red-500 border rounded-full hover:bg-red-600 md:w-fit"
                                     >
-                                        <HiOutlineTrash />
                                         Supprimer
-                                    </button>
+                                    </Button>
                                 </div>
                             </Disclosure.Panel>
                         </>
