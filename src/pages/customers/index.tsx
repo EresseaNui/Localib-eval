@@ -15,6 +15,12 @@ const CustomerListPage: React.FC<unknown> = () => {
             <div className="space-y-5">
                 <TitleWithReturn title="Liste des Clients" icon={<FiUsers />} />
                 <div>
+                    <p>
+                        Retrouvez la liste des véhicules, ainsi que leur
+                        disponibilitées.
+                    </p>
+                </div>
+                <div>
                     <NavLink
                         to={`/customer/new`}
                         className="flex items-center gap-4 px-4 py-2 font-semibold text-center text-white bg-green-500 border rounded-full hover:bg-green-600 w-fit"
