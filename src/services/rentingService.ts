@@ -10,13 +10,21 @@ export interface CreateRentingPayload {
 }
 
 class RentingService {
-   /* Une fonction qui prend une charge utile comme paramètre et renvoie une promesse. */
+    /* Une fonction qui prend une charge utile comme paramètre et renvoie une promesse. */
     createNewRenting = (
         payload: CreateRentingPayload
     ): Promise<void | AxiosResponse<any, any>> => {
         return api
             .post(`/rentings`, payload)
             .catch((err) => console.error(err));
+    };
+
+    getRentingHistory = async (id: string) => {
+        try {
+            return await api.post(`/rentings/${id}`).then((res) => res.data);
+        } catch (error) {
+            return Promise.reject(error);
+        }
     };
 
     /* Une fonction qui prend un identifiant comme paramètre et renvoie une promesse. */
