@@ -10,6 +10,7 @@ import { Key } from "react-hook-form/dist/types/path/common";
 import { format } from "date-fns";
 import { rentingService } from "../../services/rentingService";
 import { TitleWithReturn } from "../../component/UI";
+import RentingTable from "../../component/DisclosureArray/RentingTable";
 
 const RentingListPage: React.FC<unknown> = () => {
     const { data: rentings, reFetch } = useFetch("/rentings");
@@ -27,7 +28,7 @@ const RentingListPage: React.FC<unknown> = () => {
                     icon={<MdOutlineCarRental />}
                 />
                 <div>
-                    <p>Retrouvez la liste des locations</p>
+                    <p>Retrouvez l'historique des Locations</p>
                 </div>
                 <div>
                     <NavLink
@@ -38,6 +39,7 @@ const RentingListPage: React.FC<unknown> = () => {
                         Ajouter une location
                     </NavLink>
                 </div>
+                <RentingTable rentings={rentings} reFetch={reFetch} />
                 <div>
                     {rentings.map((renting: IRenting, key: Key) => (
                         <div
