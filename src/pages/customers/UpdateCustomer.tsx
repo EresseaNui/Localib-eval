@@ -18,7 +18,7 @@ const UpdateCustomer: React.FC<UpdateCustomerProps> = ({ className = "" }) => {
     const { data: customer, reFetch } = useFetch(`/customers/${id}`);
     return (
         <Layout>
-            <div>
+            <div className="space-y-10">
                 <TitleWithReturn
                     title="Modifier Client"
                     path="/customers"

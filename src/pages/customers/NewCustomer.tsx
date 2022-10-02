@@ -23,13 +23,13 @@ const NewCustomer: React.FC<unknown> = () => {
     };
     return (
         <Layout>
-            <div>
+            <div className="space-y-10">
                 <TitleWithReturn
                     title="Ajouter un nouveau client"
                     path="/customers"
                     icon={<FiUserPlus />}
                 />
-                <div>
+                <div className="flex justify-center">
                     <NewCustomerForm onSubmit={onSubmitNewCustomer} />
                 </div>
             </div>

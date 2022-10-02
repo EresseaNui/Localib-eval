@@ -7,9 +7,9 @@ import {
 import { useForm } from "react-hook-form";
 import { redirect } from "../../../utils/redirect";
 import { formattedDate } from "../../../utils/formatDate";
-import { TextField } from "../UI";
+import { Label, TextField } from "../UI";
 import ICustomer from "../../../types/customer.type";
-import { Button } from "../../UI";
+import { Button, Card } from "../../UI";
 
 export interface UpdateCustomerFormProps {
     id: string;
@@ -22,7 +22,11 @@ const UpdateCustomerForm: React.FC<UpdateCustomerFormProps> = ({
     customer,
     reFetch,
 }) => {
-    const { handleSubmit, register } = useForm<CustomerPayload>();
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+    } = useForm<CustomerPayload>();
 
     const onSubmitUpdateCustomer = async (
         formValues: CustomerPayload
@@ -39,48 +43,67 @@ const UpdateCustomerForm: React.FC<UpdateCustomerFormProps> = ({
         redirect("/customers");
     };
     return (
-        <div>
-            <div>
+        <div className="space-y-10">
+            <Card
+                title={`Détails de ${customer.firstname} ${customer.lastname}`}
+            >
                 <p>
-                    Detail de {customer.lastname}&nbsp;
-                    {customer.firstname}
+                    <span className="font-semibold">
+                        Date de Naissance :&nbsp;
+                    </span>
+                    {formattedDate(new Date(customer.birthdate), "/")}
                 </p>
-            </div>
-            <div>
-                <p>{customer.mail}</p>
-                <p>{customer.phone}</p>
-                <p>{formattedDate(new Date(customer.birthdate), "/")}</p>
-            </div>
-            <div>
-                <form onSubmit={handleSubmit(onSubmitUpdateCustomer)}>
+                <p>
+                    <span className="font-semibold">Email :&nbsp;</span>
+                    {customer.mail}
+                </p>
+                <p>
+                    <span className="font-semibold">Telephone :&nbsp;</span>
+                    {customer.phone}
+                </p>
+            </Card>
+
+            <div className="flex justify-center">
+                <form
+                    onSubmit={handleSubmit(onSubmitUpdateCustomer)}
+                    className="flex flex-col items-center w-2/3 p-10 space-y-4 border-2 rounded-lg shadow-md border-blue-primary"
+                >
                     <TextField
                         label="Nom :"
                         className="border border-blue-primary"
                         {...register("lastname")}
                         defaultValue={customer.lastname}
+                        error={errors.lastname}
                     />
                     <TextField
                         label="Prenom :"
                         className="border border-blue-primary"
                         {...register("firstname")}
                         defaultValue={customer.firstname}
+                        error={errors.firstname}
                     />
                     <TextField
                         label="Email :"
                         className="border border-blue-primary"
                         {...register("mail")}
                         defaultValue={customer.mail}
+                        error={errors.mail}
                     />
                     <TextField
                         label="Telephone :"
                         className="border border-blue-primary"
                         {...register("phone")}
                         defaultValue={customer.phone}
+                        error={errors.phone}
                     />
 
                     <div>
-                        <label>Date de naissance:</label>
-                        <input type="date" {...register("birthdate")} />
+                        <Label name="birthdate" label="Date de naissance : " />
+                        <input
+                            type="date"
+                            {...register("birthdate")}
+                            className="px-4 py-2 border border-gray-900 rounded-full"
+                        />
                     </div>
                     <Button type="submit" variant="outlined" color="white">
                         Modifier le Client
