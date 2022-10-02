@@ -7,31 +7,13 @@ import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { BiPencil } from "react-icons/bi";
 import { AiOutlineEye } from "react-icons/ai";
-import { HiOutlineTruck } from "react-icons/hi";
-import { FiTruck } from "react-icons/fi";
-import { IoCarOutline } from "react-icons/io5";
-import { RiMotorbikeFill } from "react-icons/ri";
 import { Button } from "../UI";
+import { displayType } from "../../utils/displayVehicleType";
 
 export interface VehiclesTableProps {
     vehicles: IVehicule[];
     reFetch: () => Promise<void>;
 }
-
-const displayType = (type: string) => {
-    switch (type) {
-        case "car":
-            return <IoCarOutline className="h-full" />;
-        case "truck":
-            return <FiTruck className="h-full" />;
-        case "utility":
-            return <HiOutlineTruck className="h-full" />;
-        case "bike":
-            return <RiMotorbikeFill className="h-full" />;
-        default:
-            break;
-    }
-};
 
 const VehiclesTable: React.FC<VehiclesTableProps> = ({ vehicles, reFetch }) => {
     const onClickDelete = async (id: string): Promise<void> => {
