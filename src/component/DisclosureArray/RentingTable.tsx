@@ -40,7 +40,7 @@ const RentingTable: React.FC<RentingTableProps> = ({ rentings, reFetch }) => {
                                         )}
                                     </p>
                                 </div>
-                                <div className="col-span-5 row-start-2 md:col-span-4">
+                                <div className="col-span-5 row-start-2 md:row-start-1 md:col-span-4">
                                     <p>
                                         Fin :&nbsp;
                                         {String(
