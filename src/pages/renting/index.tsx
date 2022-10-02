@@ -40,64 +40,6 @@ const RentingListPage: React.FC<unknown> = () => {
                     </NavLink>
                 </div>
                 <RentingTable rentings={rentings} reFetch={reFetch} />
-                <div>
-                    {rentings.map((renting: IRenting, key: Key) => (
-                        <div
-                            className="p-5 border rounded-lg border-blue-primary"
-                            key={key}
-                        >
-                            <p>
-                                Début :
-                                {String(
-                                    format(
-                                        new Date(renting.start_date),
-                                        "dd/MM/yyyy"
-                                    )
-                                )}
-                            </p>
-                            <p>
-                                Fin :
-                                {String(
-                                    format(
-                                        new Date(renting.end_date),
-                                        "dd/MM/yyyy"
-                                    )
-                                )}
-                            </p>
-                            <p>{renting.pricing} €</p>
-
-                            <p>
-                                {renting.customer.firstname}&nbsp;
-                                {renting.customer.lastname}
-                            </p>
-
-                            <p>
-                                {renting.vehicle.brand}&nbsp;
-                                {renting.vehicle.model}
-                            </p>
-
-                            <div>
-                                <p>actions: </p>
-
-                                <NavLink
-                                    to={`/renting/${renting.id}`}
-                                    className="flex items-center gap-4 px-4 py-2 text-center text-white border rounded-full bg-blue-primary hover:bg-blue-700 w-fit"
-                                >
-                                    <AiOutlineEye />
-                                    Voir
-                                </NavLink>
-                                <button
-                                    type="button"
-                                    onClick={() => onClickDelete(renting.id)}
-                                    className="flex items-center gap-4 px-4 py-2 text-center text-white bg-red-500 border rounded-full hover:bg-red-600 w-fit"
-                                >
-                                    <HiOutlineTrash />
-                                    Supprimer
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
             </div>
         </Layout>
     );
