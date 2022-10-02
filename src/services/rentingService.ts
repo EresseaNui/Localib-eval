@@ -19,6 +19,7 @@ class RentingService {
             .catch((err) => console.error(err));
     };
 
+    /* Une fonction qui prend un identifiant comme paramètre et renvoie une promesse. */
     getRentingHistory = async (id: string): Promise<any> => {
         try {
             return await api.post(`/rentings/${id}`).then((res) => res.data);

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { useRef } from "react";
+import React from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import { Field } from "../../../types/field";
 import Label from "./Label";

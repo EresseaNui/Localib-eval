@@ -32,6 +32,17 @@ class VehiculeService {
             .catch((err) => console.error(err));
     };
 
+    /* Une fonction qui renvoie une promesse. */
+    getAviableVehicle = async (payload: DatePayload) => {
+        try {
+            return await api
+                .post(`/vehicles/disponibility`, payload)
+                .then((res) => res.data);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    };
+
     /* Une fonction qui met à jour un véhicule dans la base de données. */
     updateVehicule = (
         id: string,
@@ -45,16 +56,6 @@ class VehiculeService {
     /* Une fonction qui supprime un véhicule de la base de données. */
     delete = (id: string): Promise<void | AxiosResponse<any, any>> => {
         return api.delete(`/vehicles/${id}`).catch((err) => console.error(err));
-    };
-
-    getAviableVehicle = async (payload: DatePayload) => {
-        try {
-            return await api
-                .post(`/vehicles/disponibility`, payload)
-                .then((res) => res.data);
-        } catch (error) {
-            return Promise.reject(error);
-        }
     };
 }
 

@@ -1,7 +1,5 @@
 import React from "react";
 import { AiOutlineCar } from "react-icons/ai";
-import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
-import { NavLink } from "react-router-dom";
 import NewVehiculeForm from "../../component/Form/VehiculeForm/NewVehiculeForm";
 import { TitleWithReturn } from "../../component/UI";
 import Layout from "../../component/UI/Layout/Layout";

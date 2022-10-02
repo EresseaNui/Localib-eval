@@ -1,13 +1,9 @@
 import React from "react";
-import { HiOutlineTrash } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import Layout from "../../component/UI/Layout/Layout";
 import { MdOutlineCarRental } from "react-icons/md";
-import { AiOutlineEye, AiOutlinePlusCircle } from "react-icons/ai";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 import useFetch from "../../api/hooks/useFetch";
-import IRenting from "../../types/renting.type";
-import { Key } from "react-hook-form/dist/types/path/common";
-import { format } from "date-fns";
 import { rentingService } from "../../services/rentingService";
 import { TitleWithReturn } from "../../component/UI";
 import RentingTable from "../../component/DisclosureArray/RentingTable";

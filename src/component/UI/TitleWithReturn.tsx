@@ -1,7 +1,4 @@
 import React from "react";
-
-import clsx from "clsx";
-import { AiFillCar } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 

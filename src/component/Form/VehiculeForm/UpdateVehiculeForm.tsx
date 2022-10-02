@@ -3,7 +3,6 @@ import {
     UpdateVehiculePayload,
     vehiculeService,
 } from "../../../services/vehiculeService";
-import useFetch from "../../../api/hooks/useFetch";
 import { useForm } from "react-hook-form";
 import { redirect } from "../../../utils/redirect";
 import { Label, SelectField, TextField } from "../UI";
