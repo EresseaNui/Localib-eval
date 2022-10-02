@@ -17,7 +17,9 @@ const NewRenting: React.FC<unknown> = () => {
                     path="/rentings"
                     icon={<MdOutlineCarRental />}
                 />
-                <NewRentingForm vehicles={vehicles} customers={customers} />
+                <div className="flex justify-center">
+                    <NewRentingForm vehicles={vehicles} customers={customers} />
+                </div>
             </div>
         </Layout>
     );
