@@ -1,7 +1,7 @@
-import React, { Key } from "react";
+import React from "react";
 import useFetch from "../../api/hooks/useFetch";
 import Layout from "../../component/UI/Layout/Layout";
-import { AiFillCar, AiOutlineEye, AiOutlinePlusCircle } from "react-icons/ai";
+import { AiFillCar, AiOutlinePlusCircle } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { TitleWithReturn } from "../../component/UI";
 import VehiclesTable from "../../component/DisclosureArray/VehiclesTable";

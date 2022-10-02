@@ -4,6 +4,7 @@ import { UseFormRegister } from "react-hook-form";
 import { SelectField } from "../UI";
 import IVehicule from "../../../types/vehicule.type";
 import ICustomer from "../../../types/customer.type";
+import { Button } from "../../UI";
 
 export interface RentingInformationProps {
     customers: ICustomer[];
@@ -47,15 +48,11 @@ const RentingInformation: React.FC<RentingInformationProps> = ({
                 />
             </div>
 
-            {price && (
-                <div>
-                    <p>Prix : {price} €</p>
-                </div>
-            )}
+            {price && price > 0 ? <p>Prix : {price} €</p> : ""}
 
-            <button type="submit" className="px-4 py-2 border">
-                Louer le véhicule
-            </button>
+            <Button type="submit" variant="outlined" color="white">
+                Louer le Véhicule
+            </Button>
         </div>
     );
 };

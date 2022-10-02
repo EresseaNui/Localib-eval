@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 
 import { NewVehiculePayload } from "../../../services/vehiculeService";
+import { Button } from "../../UI";
 import { SelectField, TextField } from "../UI";
 
 interface NewVehiculeFormProps {
@@ -63,9 +64,9 @@ const NewVehiculeForm: React.FC<NewVehiculeFormProps> = ({
                 <label>Loué:</label>
                 <input type="number" {...register("renting_price")} />
             </div>
-            <button type="submit" className="px-4 py-2 border">
+            <Button type="submit" variant="outlined" color="white">
                 Ajouter le véhicule voiture
-            </button>
+            </Button>
         </form>
     );
 };

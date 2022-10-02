@@ -1,7 +1,5 @@
 import React from "react";
 
-import clsx from "clsx";
-import useFetch from "../../../api/hooks/useFetch";
 import {
     CustomerPayload,
     customerService,
@@ -11,6 +9,7 @@ import { redirect } from "../../../utils/redirect";
 import { formattedDate } from "../../../utils/formatDate";
 import { TextField } from "../UI";
 import ICustomer from "../../../types/customer.type";
+import { Button } from "../../UI";
 
 export interface UpdateCustomerFormProps {
     id: string;
@@ -83,9 +82,9 @@ const UpdateCustomerForm: React.FC<UpdateCustomerFormProps> = ({
                         <label>Date de naissance:</label>
                         <input type="date" {...register("birthdate")} />
                     </div>
-                    <button type="submit" className="px-4 py-2 border">
-                        modifier client
-                    </button>
+                    <Button type="submit" variant="outlined" color="white">
+                        Modifier le Client
+                    </Button>
                 </form>
             </div>
         </div>

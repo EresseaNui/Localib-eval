@@ -7,7 +7,7 @@ import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { BiPencil } from "react-icons/bi";
 import { AiOutlineEye } from "react-icons/ai";
-import { HiOutlineTrash, HiOutlineTruck } from "react-icons/hi";
+import { HiOutlineTruck } from "react-icons/hi";
 import { FiTruck } from "react-icons/fi";
 import { IoCarOutline } from "react-icons/io5";
 import { RiMotorbikeFill } from "react-icons/ri";

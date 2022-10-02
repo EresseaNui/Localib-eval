@@ -1,9 +1,9 @@
 import React from "react";
 
-import clsx from "clsx";
 import { UseFormRegister } from "react-hook-form";
 import { CreateRentingPayload } from "../../../services/rentingService";
 import { getDaysBetweenDates } from "../../../utils/convertDateToPeriod";
+import { Button } from "../../UI";
 
 export interface RentingPeriodProps {
     register: UseFormRegister<CreateRentingPayload>;
@@ -57,17 +57,17 @@ const RentingPeriod: React.FC<RentingPeriodProps> = ({
             </div>
 
             {!show && (
-                <button
-                    type="button"
-                    className="px-4 py-2 border"
+                <Button
+                    variant="outlined"
+                    color="white"
                     onClick={() => {
                         setInterval(startDate, endDate);
                         setShow(true);
                     }}
                     disabled={!startDate && !endDate}
                 >
-                    Valider les date de la location
-                </button>
+                    Valider les dates de la Location
+                </Button>
             )}
         </div>
     );

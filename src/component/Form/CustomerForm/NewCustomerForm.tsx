@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { CustomerPayload } from "../../../services/customerService";
 import { useForm } from "react-hook-form";
 import { TextField } from "../UI";
+import { Button } from "../../UI";
 
 export interface NewCustomerFormProps {
     onSubmit: (value: CustomerPayload) => void;
@@ -44,9 +45,9 @@ const NewCustomerForm: React.FC<NewCustomerFormProps> = ({
                 />
             </div>
 
-            <button type="submit" className="px-4 py-2 border">
-                Ajouter le client
-            </button>
+            <Button type="submit" variant="outlined" color="white">
+                Ajouter le Client
+            </Button>
         </form>
     );
 };

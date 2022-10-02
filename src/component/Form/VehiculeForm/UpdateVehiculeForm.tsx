@@ -6,7 +6,8 @@ import {
 import useFetch from "../../../api/hooks/useFetch";
 import { useForm } from "react-hook-form";
 import { redirect } from "../../../utils/redirect";
-import { Label, SelectField, TextField } from "../UI";
+import { SelectField, TextField } from "../UI";
+import { Button } from "../../UI";
 
 export interface UpdateVehiculeFormProps {
     id: string;
@@ -73,9 +74,10 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({ id }) => {
                         <label>Loué:</label>
                         <input type="number" {...register("renting_price")} />
                     </div>
-                    <button type="submit" className="px-4 py-2 border">
-                        Ajouter la voiture
-                    </button>
+
+                    <Button type="submit" variant="outlined" color="white">
+                        Modifier le véhicule
+                    </Button>
                 </form>
             </div>
         </div>

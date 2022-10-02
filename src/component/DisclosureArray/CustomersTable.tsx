@@ -5,7 +5,6 @@ import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { BiPencil } from "react-icons/bi";
 import { AiOutlineEye } from "react-icons/ai";
-import { HiOutlineTrash } from "react-icons/hi";
 import { customerService } from "../../services/customerService";
 import { Button } from "../UI";
 

@@ -1,13 +1,10 @@
 import React, { Key } from "react";
 
-import clsx from "clsx";
 import IRenting from "../../types/renting.type";
 import { Disclosure } from "@headlessui/react";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { AiOutlineEye } from "react-icons/ai";
-import { BiPencil } from "react-icons/bi";
-import { HiOutlineTrash } from "react-icons/hi";
 import { rentingService } from "../../services/rentingService";
 import { format } from "date-fns";
 import { Button } from "../UI";

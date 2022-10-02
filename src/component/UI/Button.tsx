@@ -96,7 +96,7 @@ const Button: React.FC<ButtonProps> = ({
             onMouseOut={onMouseOut}
             onBlur={onMouseOut}
             className={clsx(
-                "flex items-center focus:outline-none focus:ring-transparent transition-all relative overflow-hidden",
+                "flex border items-center focus:outline-none focus:ring-transparent transition-all relative overflow-hidden",
                 {
                     "cursor-pointer": variant === "link",
                     "flex-row-reverse space-x-reverse":
