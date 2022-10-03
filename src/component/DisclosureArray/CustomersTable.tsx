@@ -1,12 +1,12 @@
-import React, { Key } from "react";
+import React, { Key, useState } from "react";
 import ICustomer from "../../types/customer.type";
 import { Disclosure } from "@headlessui/react";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { BiPencil } from "react-icons/bi";
 import { AiOutlineEye } from "react-icons/ai";
-import { customerService } from "../../services/customerService";
 import { Button } from "../UI";
+import CustomerConfirmDeleteModal from "../Modals/CustomerConfirmDeleteModal";
 
 export interface CustomersTableProps {
     customers: ICustomer[];
@@ -17,10 +17,9 @@ const CustomersTable: React.FC<CustomersTableProps> = ({
     customers,
     reFetch,
 }) => {
-    const onClickDelete = async (id: string): Promise<void> => {
-        await customerService.delete(id);
-        reFetch();
-    };
+    const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+    const [customer, setCustomer] = useState<ICustomer>();
+
     return (
         <div>
             <div className="grid w-full grid-cols-6 py-2 font-semibold text-center text-gray-900 rounded-full md:grid-cols-10">
@@ -78,9 +77,10 @@ const CustomersTable: React.FC<CustomersTableProps> = ({
                                         icon="trash"
                                         variant="basic"
                                         color="red"
-                                        onClick={() =>
-                                            onClickDelete(customer.id)
-                                        }
+                                        onClick={() => {
+                                            setCustomer(customer);
+                                            setShowDeleteModal(true);
+                                        }}
                                     >
                                         Supprimer
                                     </Button>
@@ -90,6 +90,13 @@ const CustomersTable: React.FC<CustomersTableProps> = ({
                     )}
                 </Disclosure>
             ))}
+            {showDeleteModal && customer && (
+                <CustomerConfirmDeleteModal
+                    customer={customer}
+                    open={showDeleteModal}
+                    setOpen={setShowDeleteModal}
+                />
+            )}
         </div>
     );
 };

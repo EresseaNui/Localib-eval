@@ -4,19 +4,19 @@ import { BiPencil } from "react-icons/bi";
 import { FiUser } from "react-icons/fi";
 import { NavLink, useParams } from "react-router-dom";
 import useFetch from "../../api/hooks/useFetch";
+import CustomerConfirmDeleteModal from "../../component/Modals/CustomerConfirmDeleteModal";
 import { Button, Card, TitleWithReturn } from "../../component/UI";
 
 import Layout from "../../component/UI/Layout/Layout";
-import { customerService } from "../../services/customerService";
 import { rentingService } from "../../services/rentingService";
 import IRenting from "../../types/renting.type";
 import { formattedDate } from "../../utils/formatDate";
-import { redirect } from "../../utils/redirect";
 
 const CustomerDetails: React.FC<unknown> = () => {
     const { id } = useParams();
 
     const [rentingsHistory, setRentingHistory] = useState<IRenting[]>([]);
+    const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
 
     useEffect(() => {
         if (id) getRentingHistory(id);
@@ -29,11 +29,6 @@ const CustomerDetails: React.FC<unknown> = () => {
     };
 
     const { data: customer } = useFetch(`/customers/${id}`);
-
-    const onClickDelete = async (id: string): Promise<void> => {
-        await customerService.delete(id);
-        redirect("/customers");
-    };
 
     return (
         <Layout>
@@ -73,7 +68,7 @@ const CustomerDetails: React.FC<unknown> = () => {
                         icon="trash"
                         variant="basic"
                         color="red"
-                        onClick={() => onClickDelete(customer.id)}
+                        onClick={() => setShowDeleteModal(true)}
                     >
                         Supprimer
                     </Button>
@@ -146,6 +141,13 @@ const CustomerDetails: React.FC<unknown> = () => {
                     ))}
                 </Card>
             </div>
+            {showDeleteModal && (
+                <CustomerConfirmDeleteModal
+                    customer={customer}
+                    open={showDeleteModal}
+                    setOpen={setShowDeleteModal}
+                />
+            )}
         </Layout>
     );
 };
