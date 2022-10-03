@@ -1,25 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { MdCarRental } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import useFetch from "../../api/hooks/useFetch";
+import RentingConfirmDeleteModal from "../../component/Modals/RentingConfirmDeleteModal";
 import { Button, Card, TitleWithReturn } from "../../component/UI";
 import Layout from "../../component/UI/Layout/Layout";
-import { rentingService } from "../../services/rentingService";
 import { displayTypeName } from "../../utils/displayVehicleType";
 
 import { formattedDate } from "../../utils/formatDate";
-import { redirect } from "../../utils/redirect";
 
 const RentingDetails: React.FC<unknown> = () => {
     const { id } = useParams();
 
+    const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+
     const { data: renting } = useFetch(`/rentings/${id}`);
 
-    const onClickDelete = async (id: string): Promise<void> => {
-        await rentingService.delete(id);
-        redirect(`/rentings`);
-    };
     return (
         <Layout>
             <div className="space-y-10">
@@ -32,7 +29,7 @@ const RentingDetails: React.FC<unknown> = () => {
                     icon="trash"
                     variant="basic"
                     color="red"
-                    onClick={() => onClickDelete(renting.id)}
+                    onClick={() => setShowDeleteModal(true)}
                 >
                     Supprimer
                 </Button>
@@ -155,6 +152,13 @@ const RentingDetails: React.FC<unknown> = () => {
                     </div>
                 </Card>
             </div>
+            {showDeleteModal && (
+                <RentingConfirmDeleteModal
+                    renting={renting}
+                    open={showDeleteModal}
+                    setOpen={setShowDeleteModal}
+                />
+            )}
         </Layout>
     );
 };

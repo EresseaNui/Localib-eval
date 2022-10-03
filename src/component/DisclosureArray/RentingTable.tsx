@@ -1,24 +1,21 @@
-import React, { Key } from "react";
+import React, { Key, useState } from "react";
 
 import IRenting from "../../types/renting.type";
 import { Disclosure } from "@headlessui/react";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { AiOutlineEye } from "react-icons/ai";
-import { rentingService } from "../../services/rentingService";
 import { format } from "date-fns";
 import { Button } from "../UI";
+import RentingConfirmDeleteModal from "../Modals/RentingConfirmDeleteModal";
 
 export interface RentingTableProps {
     rentings: IRenting[];
-    reFetch: () => Promise<void>;
 }
 
-const RentingTable: React.FC<RentingTableProps> = ({ rentings, reFetch }) => {
-    const onClickDelete = async (id: string): Promise<void> => {
-        await rentingService.delete(id);
-        reFetch();
-    };
+const RentingTable: React.FC<RentingTableProps> = ({ rentings }) => {
+    const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+    const [renting, setRenting] = useState<IRenting>();
 
     return (
         <div>
@@ -83,9 +80,10 @@ const RentingTable: React.FC<RentingTableProps> = ({ rentings, reFetch }) => {
                                         icon="trash"
                                         variant="basic"
                                         color="red"
-                                        onClick={() =>
-                                            onClickDelete(renting.id)
-                                        }
+                                        onClick={() => {
+                                            setRenting(renting);
+                                            setShowDeleteModal(true);
+                                        }}
                                     >
                                         Supprimer
                                     </Button>
@@ -95,6 +93,13 @@ const RentingTable: React.FC<RentingTableProps> = ({ rentings, reFetch }) => {
                     )}
                 </Disclosure>
             ))}
+            {showDeleteModal && renting && (
+                <RentingConfirmDeleteModal
+                    renting={renting}
+                    open={showDeleteModal}
+                    setOpen={setShowDeleteModal}
+                />
+            )}
         </div>
     );
 };

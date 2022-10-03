@@ -1,24 +1,26 @@
 import React from "react";
-import { customerService } from "../../services/customerService";
-import ICustomer from "../../types/customer.type";
-import { redirect } from "../../utils/redirect";
+
+import clsx from "clsx";
 import { Modal } from "../Form/UI";
+import IRenting from "../../types/renting.type";
+import { rentingService } from "../../services/rentingService";
+import { redirect } from "../../utils/redirect";
 import { Button } from "../UI";
 
-export interface CustomerConfirmDeleteModalProps {
+export interface RentingConfirmDeleteModalProps {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    customer: ICustomer;
+    renting: IRenting;
 }
 
-const CustomerConfirmDeleteModal: React.FC<CustomerConfirmDeleteModalProps> = ({
-    customer,
+const RentingConfirmDeleteModal: React.FC<RentingConfirmDeleteModalProps> = ({
+    renting,
     open,
     setOpen,
 }) => {
     const onClickDelete = async (id: string): Promise<void> => {
-        await customerService.delete(id);
-        redirect("/customers");
+        await rentingService.delete(id);
+        redirect("/rentings");
     };
     return (
         <Modal
@@ -29,13 +31,15 @@ const CustomerConfirmDeleteModal: React.FC<CustomerConfirmDeleteModalProps> = ({
             size="max-w-2xl"
         >
             <div className="flex flex-col space-y-5">
-                <p className="text-lg">Voulez-vous supprimer ce client ?</p>
+                <p className="text-lg">
+                    Voulez-vous supprimer cette location ?
+                </p>
                 <div className="flex pt-10 space-x-5">
                     <Button
                         type="button"
                         variant="outlined"
                         color="red"
-                        onClick={() => onClickDelete(customer.id)}
+                        onClick={() => onClickDelete(renting.id)}
                     >
                         Oui
                     </Button>
@@ -52,4 +56,4 @@ const CustomerConfirmDeleteModal: React.FC<CustomerConfirmDeleteModalProps> = ({
     );
 };
 
-export default CustomerConfirmDeleteModal;
+export default RentingConfirmDeleteModal;

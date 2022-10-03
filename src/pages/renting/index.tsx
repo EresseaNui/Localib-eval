@@ -4,17 +4,11 @@ import Layout from "../../component/UI/Layout/Layout";
 import { MdOutlineCarRental } from "react-icons/md";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import useFetch from "../../api/hooks/useFetch";
-import { rentingService } from "../../services/rentingService";
 import { TitleWithReturn } from "../../component/UI";
 import RentingTable from "../../component/DisclosureArray/RentingTable";
 
 const RentingListPage: React.FC<unknown> = () => {
-    const { data: rentings, reFetch } = useFetch("/rentings");
-
-    const onClickDelete = async (id: string): Promise<void> => {
-        await rentingService.delete(id);
-        reFetch();
-    };
+    const { data: rentings } = useFetch("/rentings");
 
     return (
         <Layout>
@@ -35,7 +29,7 @@ const RentingListPage: React.FC<unknown> = () => {
                         Ajouter une location
                     </NavLink>
                 </div>
-                <RentingTable rentings={rentings} reFetch={reFetch} />
+                <RentingTable rentings={rentings} />
             </div>
         </Layout>
     );

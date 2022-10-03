@@ -8,7 +8,7 @@ import { TitleWithReturn } from "../../component/UI";
 import CustomersTable from "../../component/DisclosureArray/CustomersTable";
 
 const CustomerListPage: React.FC<unknown> = () => {
-    const { data: customers, reFetch } = useFetch("/customers");
+    const { data: customers } = useFetch("/customers");
 
     return (
         <Layout>
@@ -29,7 +29,7 @@ const CustomerListPage: React.FC<unknown> = () => {
                         Ajouter un client
                     </NavLink>
                 </div>
-                <CustomersTable customers={customers} reFetch={reFetch} />
+                <CustomersTable customers={customers} />
             </div>
         </Layout>
     );

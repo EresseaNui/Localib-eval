@@ -10,12 +10,10 @@ import CustomerConfirmDeleteModal from "../Modals/CustomerConfirmDeleteModal";
 
 export interface CustomersTableProps {
     customers: ICustomer[];
-    reFetch: () => Promise<void>;
 }
 
 const CustomersTable: React.FC<CustomersTableProps> = ({
     customers,
-    reFetch,
 }) => {
     const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
     const [customer, setCustomer] = useState<ICustomer>();
