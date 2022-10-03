@@ -32,12 +32,14 @@ const UpdateCustomerForm: React.FC<UpdateCustomerFormProps> = ({
         formValues: CustomerPayload
     ): Promise<void> => {
         const payload = {
-            lastname: formValues.lastname,
-            firstname: formValues.firstname,
-            mail: formValues.mail,
-            phone: formValues.phone,
-            birthdate: formValues.birthdate,
+            ...customer,
+            lastname: formValues.lastname || customer.lastname,
+            firstname: formValues.firstname || customer.firstname,
+            mail: formValues.mail || customer.mail,
+            phone: formValues.phone || customer.phone,
+            birthdate: formValues.birthdate || customer.birthdate,
         };
+
         await customerService.updateCustomer(id as string, payload);
         reFetch();
         redirect("/customers");

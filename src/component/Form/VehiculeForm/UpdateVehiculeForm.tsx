@@ -33,9 +33,10 @@ const UpdateVehiculeForm: React.FC<UpdateVehiculeFormProps> = ({
     ): Promise<void> => {
         const payload = {
             ...vehicle,
-            registration_number: formValues.registration_number,
-            vehicle_state: formValues.vehicle_state,
-            renting_price: formValues.renting_price,
+            registration_number:
+                formValues.registration_number || vehicle.registration_number,
+            vehicle_state: formValues.vehicle_state || vehicle.vehicle_state,
+            renting_price: formValues.renting_price || vehicle.renting_price,
         };
         await vehiculeService.updateVehicule(vehicle.id as string, payload);
         reFetch();
