@@ -56,22 +56,34 @@ const CustomerDetails: React.FC<unknown> = () => {
                     </p>
                 </Card>
 
-                <div className="flex justify-around w-1/2">
-                    <NavLink
-                        to={`/customer/${customer.id}/update`}
-                        className="flex items-center justify-center w-full gap-4 px-4 py-2 text-center text-white border rounded-full bg-blue-primary hover:bg-blue-700 md:w-fit"
-                    >
-                        <BiPencil />
-                        Modifier
-                    </NavLink>
-                    <Button
-                        icon="trash"
-                        variant="basic"
-                        color="red"
-                        onClick={() => setShowDeleteModal(true)}
-                    >
-                        Supprimer
-                    </Button>
+                <div className="space-y-2">
+                    {rentingsHistory.length > 0 && (
+                        <div className="text-sm text-gray-500">
+                            <p>
+                                Supprimer l'historique des location
+                                correspondant a cet utilisateur avant de pouvoir
+                                le supprimer
+                            </p>
+                        </div>
+                    )}
+                    <div className="flex justify-around w-1/2">
+                        <NavLink
+                            to={`/customer/${customer.id}/update`}
+                            className="flex items-center justify-center w-full gap-4 px-4 py-2 text-center text-white border rounded-full bg-blue-primary hover:bg-blue-700 md:w-fit"
+                        >
+                            <BiPencil />
+                            Modifier
+                        </NavLink>
+                        <Button
+                            icon="trash"
+                            variant="basic"
+                            color="red"
+                            onClick={() => setShowDeleteModal(true)}
+                            disabled={rentingsHistory.length > 0}
+                        >
+                            Supprimer
+                        </Button>
+                    </div>
                 </div>
 
                 <Card title="Historique des Locations">
@@ -141,7 +153,7 @@ const CustomerDetails: React.FC<unknown> = () => {
                     ))}
                 </Card>
             </div>
-            {showDeleteModal && (
+            {showDeleteModal && rentingsHistory.length === 0 && (
                 <CustomerConfirmDeleteModal
                     customer={customer}
                     open={showDeleteModal}
